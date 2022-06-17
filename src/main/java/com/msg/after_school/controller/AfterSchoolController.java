@@ -1,11 +1,11 @@
 package com.msg.after_school.controller;
 
+import com.msg.after_school.domain.afterSchool.DayOfWeek;
 import com.msg.after_school.dto.AfterSchoolDto;
 import com.msg.after_school.dto.SearchConditionDto;
 import com.msg.after_school.response.AfterSchoolResponse;
 import com.msg.after_school.service.AfterSchoolService;
 import com.msg.after_school.type.SeasonType;
-import com.msg.after_school.type.WeekType;
 import com.msg.after_school.util.AfterSchoolConverter;
 import com.msg.after_school.util.SearchConditionConverter;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class AfterSchoolController {
 
     @GetMapping//방과후 목록을 가져온다.
     public ResponseEntity<List<AfterSchoolResponse>> findAfterSchoolList(@RequestParam SeasonType season,
-                                                                         @RequestParam WeekType week,
+                                                                         @RequestParam DayOfWeek week,
                                                                          @RequestParam Integer grade) {
         //Request정보를 검색조건Dto로 치환한다.
         SearchConditionDto dto = searchConditionConverter.toDto(season, week, grade);
@@ -41,7 +41,7 @@ public class AfterSchoolController {
         return ResponseEntity.ok().build();
     }
     @PostMapping("/apply") //방과후산청을 등록한다.
-    public ResponseEntity applyAftetSchool() {
+    public ResponseEntity applyAfterSchool() {
         return ResponseEntity.ok().build();
     }
     @PostMapping("/cancel") //방과후신청을 취소한다.
