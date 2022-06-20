@@ -1,4 +1,4 @@
-package com.msg.after_school.domain.afterSchool;
+package com.msg.after_school.domain.after_school;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -9,9 +9,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class DayOfWeek {
+@AllArgsConstructor
+public class Grade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,7 @@ public class DayOfWeek {
     @JoinColumn(name = "afterSchool_id")
     private AfterSchool afterSchool;
 
-    private String dayOfWeek;
+    private Long grade;
 
     public void mapping(AfterSchool afterSchool){
         this.afterSchool=afterSchool;
