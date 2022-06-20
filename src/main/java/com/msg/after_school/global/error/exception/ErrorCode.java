@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
-    ;
+    UNKNOWN(500, "Unknown error");
 
     private final int status;
     private final String message;
