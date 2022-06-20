@@ -33,8 +33,8 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
-                .antMatchers(HttpMethod.GET, "afterschool/*").permitAll()
-                .antMatchers(HttpMethod.POST, "afterschool/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/afterschool/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/afterschool/*").permitAll()
 
                 .anyRequest().denyAll()
                 .and()
