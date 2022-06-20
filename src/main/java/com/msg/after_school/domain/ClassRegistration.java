@@ -1,5 +1,6 @@
 package com.msg.after_school.domain;
 
+import com.msg.after_school.domain.user.entity.User;
 import lombok.Getter;
 
 import javax.persistence.*;

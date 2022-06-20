@@ -1,4 +1,4 @@
-package com.msg.after_school.domain;
+package com.msg.after_school.domain.user.entity;
 
 import lombok.*;
 
