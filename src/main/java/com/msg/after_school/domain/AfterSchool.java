@@ -1,4 +1,4 @@
-package com.msg.after_school.domain.afterSchool;
+package com.msg.after_school.domain.after_school;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.msg.after_school.domain.classregistration.ClassRegistration;
