@@ -8,6 +8,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
+    EXPIRED_TOKEN(401, "Expired Token"),
+    INVALID_TOKEN(401, "Invalid Token"),
+    USER_NOT_FOUND(404, "Not Found User"),
     UNKNOWN(500, "Unknown error");
 
     private final int status;
