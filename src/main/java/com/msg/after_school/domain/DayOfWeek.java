@@ -1,4 +1,4 @@
-package com.msg.after_school.domain.after_school;
+package com.msg.after_school.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

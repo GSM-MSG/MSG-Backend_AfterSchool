@@ -1,6 +1,6 @@
 package com.msg.after_school.controller;
 
-import com.msg.after_school.domain.afterSchool.DayOfWeek;
+import com.msg.after_school.domain.DayOfWeek;
 import com.msg.after_school.dto.AfterSchoolDto;
 import com.msg.after_school.dto.SearchConditionDto;
 import com.msg.after_school.response.AfterSchoolResponse;
