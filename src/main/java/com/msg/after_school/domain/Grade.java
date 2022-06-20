@@ -1,6 +1,7 @@
-package com.msg.after_school.domain.after_school;
+package com.msg.after_school.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.msg.after_school.domain.AfterSchool;
 import lombok.*;
 
 import javax.persistence.*;

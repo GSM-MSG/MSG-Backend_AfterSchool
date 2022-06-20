@@ -1,6 +1,6 @@
 package com.msg.after_school.dto;
 
-import com.msg.after_school.domain.afterSchool.DayOfWeek;
+import com.msg.after_school.domain.DayOfWeek;
 import com.msg.after_school.type.SeasonType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

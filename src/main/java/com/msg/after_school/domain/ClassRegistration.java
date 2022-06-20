@@ -1,7 +1,5 @@
-package com.msg.after_school.domain.classregistration;
+package com.msg.after_school.domain;
 
-import com.msg.after_school.domain.after_school.AfterSchool;
-import com.msg.after_school.domain.user.User;
 import lombok.Getter;
 
 import javax.persistence.*;
