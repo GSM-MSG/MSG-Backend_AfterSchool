@@ -5,6 +5,7 @@ import com.msg.after_school.global.security.exception.ExpiredTokenException;
 import com.msg.after_school.global.security.exception.InvalidTokenException;
 import com.msg.after_school.global.security.properties.JwtProperties;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +42,7 @@ public class JwtTokenProvider {
                     .setSigningKey(jwtProperties.getAccessSecret())
                     .parseClaimsJws(token)
                     .getBody();
-        } catch (ExpiredTokenException e) {
+        } catch (ExpiredJwtException e) {
             throw ExpiredTokenException.EXCEPTION;
         } catch (SignatureException e) {
             throw InvalidTokenException.EXCEPTION;
