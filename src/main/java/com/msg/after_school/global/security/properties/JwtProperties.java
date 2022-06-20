@@ -11,6 +11,5 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 @AllArgsConstructor
 @ConfigurationProperties(prefix = "jwt")
 public class JwtProperties {
-    private final String accessSecret;
-    private final String refreshSecret;
+    private final String secret;
 }

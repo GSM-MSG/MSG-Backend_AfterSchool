@@ -39,7 +39,7 @@ public class JwtTokenProvider {
 
         try {
             return Jwts.parser()
-                    .setSigningKey(jwtProperties.getAccessSecret())
+                    .setSigningKey(jwtProperties.getSecret())
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
