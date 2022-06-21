@@ -1,5 +1,7 @@
 package com.msg.after_school.global.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.msg.after_school.global.security.exception.handler.JwtExceptionHandler;
 import com.msg.after_school.global.security.filter.JwtTokenFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +19,7 @@ import org.springframework.web.cors.CorsUtils;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final JwtTokenProvider jwtTokenProvider;
+    private final ObjectMapper objectMapper;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -38,7 +41,8 @@ public class SecurityConfig {
 
                 .anyRequest().permitAll()
                 .and()
-                .addFilterAfter(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAfter(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtExceptionHandler(objectMapper), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
