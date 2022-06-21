@@ -9,15 +9,18 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Base64;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class JwtTokenProvider {
     private final JwtProperties jwtProperties;
     private final AuthDetailsService authDetailsService;
@@ -39,7 +42,7 @@ public class JwtTokenProvider {
 
         try {
             return Jwts.parser()
-                    .setSigningKey(jwtProperties.getSecret())
+                    .setSigningKey(Base64.getEncoder().encodeToString(jwtProperties.getSecret().getBytes()))
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {

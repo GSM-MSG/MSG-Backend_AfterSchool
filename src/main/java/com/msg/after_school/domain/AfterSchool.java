@@ -1,7 +1,6 @@
 package com.msg.after_school.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.msg.after_school.domain.ClassRegistration;
 import com.msg.after_school.type.SeasonType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

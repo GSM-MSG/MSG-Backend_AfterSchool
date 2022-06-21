@@ -2,6 +2,7 @@ package com.msg.after_school.global.error;
 
 import com.msg.after_school.global.error.exception.AfterSchoolException;
 import com.msg.after_school.global.error.exception.ErrorCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(AfterSchoolException.class)
+    @ExceptionHandler({AfterSchoolException.class})
     public ResponseEntity<ErrorResponse> handleGlobalException(AfterSchoolException e) {
         ErrorCode errorCode = e.getErrorCode();
         return new ResponseEntity(

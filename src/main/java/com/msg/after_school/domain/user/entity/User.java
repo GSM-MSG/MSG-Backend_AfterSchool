@@ -2,6 +2,7 @@ package com.msg.after_school.domain.user.entity;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -21,6 +22,7 @@ public class User {
 
     private int grade;
 
+    @Column(name = "class")
     private int class_;
 
     private int num;

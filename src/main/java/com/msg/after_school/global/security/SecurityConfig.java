@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.GET, "/afterschool/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/afterschool/*").permitAll()
 
-                .anyRequest().denyAll()
+                .anyRequest().permitAll()
                 .and()
                 .addFilterAfter(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return http.build();
