@@ -27,16 +27,11 @@ public class JwtExceptionHandler extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try{
             filterChain.doFilter(request,response);
-        }catch(InvalidTokenException e){
+        }catch(AfterSchoolException e) {
             log.error(request.getRequestURI());
             log.error(e.getErrorCode().getMessage());
             e.printStackTrace();
-            responseError(response, ErrorCode.INVALID_TOKEN);
-        }catch(ExpiredTokenException e){
-            log.error(request.getRequestURI());
-            log.error(e.getErrorCode().getMessage());
-            e.printStackTrace();
-            responseError(response, ErrorCode.EXPIRED_TOKEN);
+            responseError(response, e.getErrorCode());
         }
     }
 

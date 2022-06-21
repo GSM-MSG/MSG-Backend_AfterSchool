@@ -20,7 +20,6 @@ import java.util.Base64;
 
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class JwtTokenProvider {
     private final JwtProperties jwtProperties;
     private final AuthDetailsService authDetailsService;
@@ -53,6 +52,6 @@ public class JwtTokenProvider {
     }
 
     private String getTokenSubject(String token) {
-        return getTokenBody(token).getSubject();
+        return getTokenBody(token).get("email", String.class);
     }
 }

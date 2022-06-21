@@ -20,7 +20,6 @@ import static org.springframework.http.ResponseEntity.*;
 @RestController
 @RequestMapping("/afterschool")
 @RequiredArgsConstructor
-@Slf4j
 public class AfterSchoolController {
 
     private final SearchConditionConverter searchConditionConverter;
@@ -32,7 +31,6 @@ public class AfterSchoolController {
                                                                          @RequestParam DayOfWeek week,
                                                                          @RequestParam Integer grade) {
         //Request정보를 검색조건 Dto로 치환한다.
-        log.info("asd");
         SearchConditionDto dto = searchConditionConverter.toDto(season, week, grade);
         //검색조건Dto를 통해 방과후 목록을 가져온다.
         List<AfterSchoolDto> dtoList = afterSchoolService.findAfterSchoolListBySearchCondition(dto);
