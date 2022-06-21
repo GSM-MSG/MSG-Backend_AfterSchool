@@ -19,7 +19,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     @Autowired

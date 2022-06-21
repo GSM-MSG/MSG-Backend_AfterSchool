@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/h2db/securityTest
+    url: jdbc:h2:tcp://localhost/~/test
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -22,4 +22,4 @@ messages:
   basename: i18n/exception
   encoding: UTF-8
 jwt:
-  secret: WWtkWk4xbFlUbkppUkhScllUSkdlbUpIVVQwPQ==
+  secret: ${JWT}
