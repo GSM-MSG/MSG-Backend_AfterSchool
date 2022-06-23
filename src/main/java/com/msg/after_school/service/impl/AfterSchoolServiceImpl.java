@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Service
 @RequiredArgsConstructor
@@ -45,12 +46,12 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
     }
 
     private AfterSchool[] applyFilter(SearchConditionDto searchConditionDto, List<AfterSchool> afterSchoolList) {
-        return afterSchoolList.stream().filter(afterSchool -> {
-            return afterSchool.getGrade().stream().map(e -> e.getGrade()).filter(g -> g.equals(searchConditionDto.getGrade())).count() != 0 &&
-                    afterSchool.getSeason().equals(searchConditionDto.getSeason()) &&
-                    searchConditionDto.getWeek().equals("ALL") ? afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> w.equals("MON") || w.equals("TUE") || w.equals("WED")).count() != 0
-                    : afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> w.equals(searchConditionDto.getWeek())).count() != 0;
-
-        }).toArray(AfterSchool[]::new);
+        Predicate<? super String> predicate = searchConditionDto.getGrade().equals("ALL")
+                ? w -> w.equals("MON") || w.equals("TUE") || w.equals("WED")
+                : w -> w.equals(searchConditionDto.getWeek());
+        return afterSchoolList.stream().filter(afterSchool -> afterSchool.getGrade().stream().map(e -> e.getGrade()).filter(g -> g.equals(searchConditionDto.getGrade())).count() != 0 &&
+                afterSchool.getSeason().equals(searchConditionDto.getSeason()) &&
+                afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(predicate).count() != 0
+        ).toArray(AfterSchool[]::new);
     }
 }
