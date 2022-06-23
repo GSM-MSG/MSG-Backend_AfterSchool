@@ -32,12 +32,22 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
     @Transactional
     public List<AfterSchool> findAfterSchoolListBySearchCondition(SearchConditionDto searchConditionDto) { // 1 학년 월 , 수
         List<AfterSchool> afterSchoolList = afterSchoolRepository.findAll();
-        List<AfterSchool> filteredList = Arrays.asList(
-                afterSchoolList.stream().filter(afterSchool -> {
-                    return afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> w.equals(searchConditionDto.getWeek())).count() != 0 &&
-                            afterSchool.getGrade().stream().map(e -> e.getGrade()).filter(g -> g.equals(searchConditionDto.getGrade())).count() != 0;
-                }).toArray(AfterSchool[]::new)
-        );
+        List<AfterSchool> filteredList;
+        if(searchConditionDto.getWeek().equals("ALL")){
+            filteredList = Arrays.asList(
+                    afterSchoolList.stream().filter(afterSchool -> {
+                        return afterSchool.getGrade().stream().map(e -> e.getGrade()).filter(g -> g.equals(searchConditionDto.getGrade())).count() != 0;
+                    }).toArray(AfterSchool[]::new)
+            );
+        }
+        else{
+            filteredList = Arrays.asList(
+                    afterSchoolList.stream().filter(afterSchool -> {
+                        return afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> w.equals(searchConditionDto.getWeek())).count() != 0 &&
+                                afterSchool.getGrade().stream().map(e -> e.getGrade()).filter(g -> g.equals(searchConditionDto.getGrade())).count() != 0;
+                    }).toArray(AfterSchool[]::new)
+            );
+        }
 //        Long grade = searchConditionDto.getGrade();
 //        SeasonType season = searchConditionDto.getSeason();
 //        String week = searchConditionDto.getWeek();
