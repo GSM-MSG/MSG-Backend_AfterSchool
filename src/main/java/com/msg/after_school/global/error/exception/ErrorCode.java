@@ -11,6 +11,9 @@ public enum ErrorCode {
     EXPIRED_TOKEN(401, "Expired Token"),
     INVALID_TOKEN(401, "Invalid Token"),
     USER_NOT_FOUND(404, "Not Found User"),
+
+    AFTERSCHOOL_NOT_FOUND(404,"Not Found AfterSchool"),
+
     UNKNOWN(500, "Unknown error");
 
     private final int status;
