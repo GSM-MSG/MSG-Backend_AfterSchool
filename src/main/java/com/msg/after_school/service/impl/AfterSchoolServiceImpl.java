@@ -32,15 +32,11 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
     @Transactional
     public List<AfterSchool> findAfterSchoolListBySearchCondition(SearchConditionDto searchConditionDto) { // 1 학년 월 , 수
         List<AfterSchool> afterSchoolList = afterSchoolRepository.findAll();
-        System.out.println(afterSchoolList);
-        afterSchoolList.forEach(a -> log.info(String.valueOf(a.getDayOfWeek())));
-        log.info(searchConditionDto.getWeek());
         List<AfterSchool> filteredList = Arrays.asList(
                 afterSchoolList.stream().filter(afterSchool -> {
-                    return afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> { log.info(w); return w != searchConditionDto.getWeek();}).count() != 0;
+                    return afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> { return w != searchConditionDto.getWeek();}).count() != 0;
                 }).toArray(AfterSchool[]::new)
         );
-
 //        Long grade = searchConditionDto.getGrade();
 //        SeasonType season = searchConditionDto.getSeason();
 //        String week = searchConditionDto.getWeek();
