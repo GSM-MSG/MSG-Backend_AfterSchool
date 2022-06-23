@@ -18,10 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AfterSchoolServiceImpl implements AfterSchoolService {
-
-    @Autowired
     private final AfterSchoolRepository afterSchoolRepository;
-    @Autowired
     private final DayOfWeekRepository dayOfWeekRepository;
 
     @Override

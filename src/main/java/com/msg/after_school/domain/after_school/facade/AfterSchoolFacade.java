@@ -1,6 +1,7 @@
 package com.msg.after_school.domain.after_school.facade;
 
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
+import com.msg.after_school.domain.after_school.exception.AfterSchoolNotFoundException;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.util.Optional;
 public class AfterSchoolFacade {
     private final AfterSchoolRepository afterSchoolRepository;
 
-    public Optional<AfterSchool> getAfterSchoolByAfterSchoolId(Long afterSchoolId){
-        return afterSchoolRepository.findById(afterSchoolId);
+    public AfterSchool getAfterSchoolByAfterSchoolId(Long afterSchoolId){
+        return afterSchoolRepository.findById(afterSchoolId).orElseThrow(()->new AfterSchoolNotFoundException()) ;
     }
 }

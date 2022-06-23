@@ -1,7 +1,7 @@
 package com.msg.after_school.global.user.facade;
 
 import com.msg.after_school.domain.user.entity.User;
-import com.msg.after_school.domain.user.exception.UserNotFoundException;
+import com.msg.after_school.global.user.exception.UserNotFoundException;
 import com.msg.after_school.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +18,6 @@ public class UserFacade {
     }
 
     public User getUserByEmail(String email) {
-        return userRepository.findUserByEmail(email).orElseThrow(() -> UserNotFoundException.EXCEPTION);
+        return userRepository.findUserByEmail(email).orElseThrow(() -> new UserNotFoundException());
     }
 }

@@ -4,7 +4,7 @@ import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
 import com.msg.after_school.domain.after_school.data.dto.AfterSchoolDto;
 import com.msg.after_school.domain.after_school.data.dto.ApplyAfterSchoolDto;
 import com.msg.after_school.domain.after_school.data.dto.SearchConditionDto;
-import com.msg.after_school.domain.after_school.response.AfterSchoolResponse;
+import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import com.msg.after_school.domain.after_school.data.type.SeasonType;
 import com.msg.after_school.domain.after_school.util.AfterSchoolConverter;
