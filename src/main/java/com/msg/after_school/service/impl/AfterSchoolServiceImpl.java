@@ -37,7 +37,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
         log.info(searchConditionDto.getWeek());
         List<AfterSchool> filteredList = Arrays.asList(
                 afterSchoolList.stream().filter(afterSchool -> {
-                    return afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> { log.info(w); return w != searchConditionDto.getWeek();}).count() != 0;
+                    return afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> w.equals(searchConditionDto.getWeek())).count() != 0;
                 }).toArray(AfterSchool[]::new)
         );
 
