@@ -34,7 +34,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
         List<AfterSchool> afterSchoolList = afterSchoolRepository.findAll();
         List<AfterSchool> filteredList = Arrays.asList(
                 afterSchoolList.stream().filter(afterSchool -> {
-                    return afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> { return w != searchConditionDto.getWeek();}).count() != 0;
+                    return afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(w -> w.equals(searchConditionDto.getWeek())).count() != 0;
                 }).toArray(AfterSchool[]::new)
         );
 //        Long grade = searchConditionDto.getGrade();
