@@ -9,8 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 public class DayOfWeek {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

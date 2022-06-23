@@ -16,29 +16,20 @@ public class AfterSchoolDto {
 
     private String title;
 
-//    private Long personnel;
-
-    @OneToMany(mappedBy = "afterSchool")
     private List<Grade> grade;
 
-    @OneToMany(mappedBy = "afterSchool")
     private List<DayOfWeek> dayOfWeek;
 
     private String teacher;
 
-    @Column(columnDefinition = "TINYINT")
     private Boolean canDuplicate;
 
-    @Enumerated(EnumType.STRING)
     private SeasonType season;
 
     private Long yearOf;
 
-    @Column(columnDefinition = "TINYINT")
     private Boolean isOpened;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "afterSchool", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<ClassRegistration> classRegistration = new HashSet<>();
 
     public void changeIsOpened(boolean isOpened) {

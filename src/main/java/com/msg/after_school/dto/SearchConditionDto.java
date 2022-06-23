@@ -1,6 +1,5 @@
 package com.msg.after_school.dto;
 
-import com.msg.after_school.domain.DayOfWeek;
 import com.msg.after_school.type.SeasonType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor @AllArgsConstructor
 public class SearchConditionDto {
-    private DayOfWeek week;
+    private String week;
     private SeasonType season;
-    private Integer grade;
+    private Long grade;
 }
