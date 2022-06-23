@@ -49,7 +49,8 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
         Predicate<? super String> predicate = searchConditionDto.getGrade().equals("ALL")
                 ? w -> w.equals("MON") || w.equals("TUE") || w.equals("WED")
                 : w -> w.equals(searchConditionDto.getWeek());
-        return afterSchoolList.stream().filter(afterSchool -> afterSchool.getGrade().stream().map(e -> e.getGrade()).filter(g -> g.equals(searchConditionDto.getGrade())).count() != 0 &&
+        return afterSchoolList.stream().filter(
+                afterSchool -> afterSchool.getGrade().stream().map(e -> e.getGrade()).filter(g -> g.equals(searchConditionDto.getGrade())).count() != 0 &&
                 afterSchool.getSeason().equals(searchConditionDto.getSeason()) &&
                 afterSchool.getDayOfWeek().stream().map(e -> e.getDayOfWeek()).filter(predicate).count() != 0
         ).toArray(AfterSchool[]::new);
