@@ -11,5 +11,5 @@ import java.util.List;
 
 @Repository
 public interface AfterSchoolRepository extends JpaRepository<AfterSchool,Long> {
-    List<AfterSchool> findAllByGradeAndDayOfWeekAndSeason(Grade gradeData, DayOfWeek dayOfWeek, SeasonType season);
+
 }

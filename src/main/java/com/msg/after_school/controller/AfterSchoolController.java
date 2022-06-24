@@ -27,16 +27,11 @@ public class AfterSchoolController {
 
     @GetMapping//방과후 목록을 가져온다.
     @ResponseBody
-    public ResponseEntity<List<AfterSchoolResponse>> findAfterSchoolList(@RequestParam SeasonType season,
-                                      @RequestParam String week,
-                                      @RequestParam Long grade) {
+    public ResponseEntity<List<AfterSchoolResponse>> findAfterSchoolList() {
         //Request정보를 검색조건 Dto로 치환한다.
-        SearchConditionDto dto = searchConditionConverter.toDto(season, week, grade);
-        //검색조건 Dto를 통해 방과후 목록을 가져온다.
-        List<AfterSchool> dtoList = afterSchoolService.findAfterSchoolListBySearchCondition(dto);
+        List<AfterSchool> dtoList = afterSchoolService.findAfterSchoolListBySearchCondition();
         //받아온 목록을 응답값으로 치환한다.
         List<AfterSchoolResponse> responseList = afterSchoolConverter.toResponse(dtoList);
-        log.info(String.valueOf(responseList));
         return new ResponseEntity<>(responseList, HttpStatus.OK);
     }
     @GetMapping("/find") //조건에 맞는 방과후 목록을 가져온다.
