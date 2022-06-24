@@ -1,4 +1,4 @@
-package com.msg.after_school.domain.after_school.response;
+package com.msg.after_school.domain.after_school.data.response;
 
 import lombok.Builder;
 import lombok.Getter;

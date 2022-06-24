@@ -1,6 +1,7 @@
 package com.msg.after_school.domain.after_school.controller;
 
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
+import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
 import com.msg.after_school.service.AfterSchoolService;
 import com.msg.after_school.util.AfterSchoolConverter;
 import com.msg.after_school.util.SearchConditionConverter;
@@ -8,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import com.msg.after_school.domain.after_school.data.dto.ApplyAfterSchoolDto;
-import com.msg.after_school.domain.after_school.response.AfterSchoolResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

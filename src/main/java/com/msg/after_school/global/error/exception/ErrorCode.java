@@ -16,7 +16,6 @@ public enum ErrorCode {
     GRADE_NOT_FOUND(404,"Not Found Grade"),
     AFTERSCHOOL_NOT_FOUND(404,"Not Found AfterSchool");
 
-
     private final int status;
     private final String message;
 }
