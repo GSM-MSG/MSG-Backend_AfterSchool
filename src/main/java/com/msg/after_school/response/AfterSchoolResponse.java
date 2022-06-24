@@ -12,5 +12,5 @@ public class AfterSchoolResponse {
     private String title;
     private List<String> week;
     private List<Long> grade;
-    private boolean isOpened;
+    private Boolean isOpened;
 }

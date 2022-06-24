@@ -1,10 +1,8 @@
 package com.msg.after_school.controller;
 
 import com.msg.after_school.domain.AfterSchool;
-import com.msg.after_school.dto.SearchConditionDto;
 import com.msg.after_school.response.AfterSchoolResponse;
 import com.msg.after_school.service.AfterSchoolService;
-import com.msg.after_school.type.SeasonType;
 import com.msg.after_school.util.AfterSchoolConverter;
 import com.msg.after_school.util.SearchConditionConverter;
 import lombok.RequiredArgsConstructor;
