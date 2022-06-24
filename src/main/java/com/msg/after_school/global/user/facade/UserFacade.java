@@ -1,4 +1,4 @@
-package com.msg.after_school.domain.user.facade;
+package com.msg.after_school.global.user.facade;
 
 import com.msg.after_school.domain.user.entity.User;
 import com.msg.after_school.domain.user.exception.UserNotFoundException;

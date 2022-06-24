@@ -1,4 +1,4 @@
-package com.msg.after_school.domain;
+package com.msg.after_school.domain.after_school.data.entity;
 
 import com.msg.after_school.domain.user.entity.User;
 import lombok.Getter;

@@ -1,10 +1,10 @@
-package com.msg.after_school.dto;
+package com.msg.after_school.domain.after_school.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.msg.after_school.domain.ClassRegistration;
-import com.msg.after_school.domain.DayOfWeek;
-import com.msg.after_school.domain.Grade;
-import com.msg.after_school.type.SeasonType;
+import com.msg.after_school.domain.after_school.data.entity.ClassRegistration;
+import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
+import com.msg.after_school.domain.after_school.data.entity.Grade;
+import com.msg.after_school.domain.after_school.data.type.SeasonType;
 
 import javax.persistence.*;
 import java.util.HashSet;

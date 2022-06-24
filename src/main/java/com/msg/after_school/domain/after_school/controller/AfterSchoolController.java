@@ -1,13 +1,14 @@
-package com.msg.after_school.controller;
+package com.msg.after_school.domain.after_school.controller;
 
-import com.msg.after_school.domain.AfterSchool;
-import com.msg.after_school.response.AfterSchoolResponse;
+import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.service.AfterSchoolService;
 import com.msg.after_school.util.AfterSchoolConverter;
 import com.msg.after_school.util.SearchConditionConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import com.msg.after_school.domain.after_school.data.dto.ApplyAfterSchoolDto;
+import com.msg.after_school.domain.after_school.response.AfterSchoolResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +33,11 @@ public class AfterSchoolController {
         List<AfterSchoolResponse> responseList = afterSchoolConverter.toResponse(dtoList);
         return new ResponseEntity<>(responseList, HttpStatus.OK);
     }
-    @GetMapping("/find") //조건에 맞는 방과후 목록을 가져온다.
-    public ResponseEntity searchAfterSchoolList() {
-        return ResponseEntity.ok().build();
-    }
     @PostMapping("/apply") //방과후산청을 등록한다.
-    public ResponseEntity applyAfterSchool() {
+    public ResponseEntity applyAfterSchool(@RequestBody ApplyAfterSchoolDto applyAfterSchoolDto) {
+        //유저 이메일을 받아온다
+        //유저 이메이을 토대로 유저 정보를 찾는다
+        //유저 정보와 클럽데이터를 토대로 수강테이블에 삽입한다.
         return ResponseEntity.ok().build();
     }
     @PostMapping("/cancel") //방과후신청을 취소한다.

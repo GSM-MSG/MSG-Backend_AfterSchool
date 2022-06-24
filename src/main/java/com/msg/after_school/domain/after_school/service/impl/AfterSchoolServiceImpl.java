@@ -1,11 +1,10 @@
-package com.msg.after_school.service.impl;
+package com.msg.after_school.domain.after_school.service.impl;
 
-import com.msg.after_school.domain.AfterSchool;
-import com.msg.after_school.dto.SearchConditionDto;
-import com.msg.after_school.repository.AfterSchoolRepository;
 import com.msg.after_school.service.AfterSchoolService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
+import com.msg.after_school.domain.after_school.repository.AfterSchoolRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

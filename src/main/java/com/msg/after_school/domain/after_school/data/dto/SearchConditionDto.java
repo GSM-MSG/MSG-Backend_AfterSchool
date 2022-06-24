@@ -1,6 +1,6 @@
-package com.msg.after_school.dto;
+package com.msg.after_school.domain.after_school.data.dto;
 
-import com.msg.after_school.type.SeasonType;
+import com.msg.after_school.domain.after_school.data.type.SeasonType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

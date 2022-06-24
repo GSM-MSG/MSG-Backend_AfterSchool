@@ -13,7 +13,9 @@ public enum ErrorCode {
     INVALID_TOKEN(401, "Invalid Token"),
     USER_NOT_FOUND(404, "Not Found User"),
     UNKNOWN(500, "Unknown error"),
-    GRADE_NOT_FOUND(404,"Not Found Grade");
+    GRADE_NOT_FOUND(404,"Not Found Grade"),
+    AFTERSCHOOL_NOT_FOUND(404,"Not Found AfterSchool");
+
 
     private final int status;
     private final String message;

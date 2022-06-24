@@ -1,7 +1,6 @@
 package com.msg.after_school.service;
 
-import com.msg.after_school.domain.AfterSchool;
-import com.msg.after_school.dto.SearchConditionDto;
+import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 
 import java.util.List;
 
