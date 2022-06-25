@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface AfterSchoolService {
     List<AfterSchool> findAfterSchoolListBySearchCondition();
+
+    void applyAfterSchool(Long AfterSchoolId);
 }
