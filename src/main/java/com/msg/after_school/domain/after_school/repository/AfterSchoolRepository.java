@@ -14,5 +14,6 @@ public interface AfterSchoolRepository extends JpaRepository<AfterSchool,Long> {
 
     List<AfterSchool> findAllByGradeAndDayOfWeekAndSeason(Integer grade, DayOfWeek dayOfWeek, SeasonType season);
 
+    List<AfterSchool> findAllByIsOpened(Boolean isOpened);
     Optional<AfterSchool> findById(Long Id);
 }

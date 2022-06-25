@@ -12,7 +12,6 @@ import com.msg.after_school.global.user.facade.UserFacade;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -28,9 +27,8 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
     @Override
     @Transactional
     public List<AfterSchool> findAfterSchoolListBySearchCondition() { // 1 학년 월 , 수
-        List<AfterSchool> afterSchoolList = afterSchoolRepository.findAll();
-        List<AfterSchool> filteredList = Arrays.asList(applyFilter(afterSchoolList));
-        return filteredList;
+        List<AfterSchool> afterSchoolList = afterSchoolRepository.findAllByIsOpened(true);
+        return afterSchoolList;
     }
 
     @Override
@@ -39,12 +37,5 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
         User userInfo=userFacade.getCurrentUser();
 
         System.out.println(afterSchoolInfo);
-    }
-
-    private AfterSchool[] applyFilter(List<AfterSchool> afterSchoolList) {
-        return afterSchoolList.stream().filter(afterSchool -> {
-                    return afterSchool.getIsOpened() == true;
-                }
-        ).toArray(AfterSchool[] :: new);
     }
 }
