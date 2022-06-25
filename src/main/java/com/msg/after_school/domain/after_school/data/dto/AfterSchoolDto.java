@@ -22,8 +22,6 @@ public class AfterSchoolDto {
 
     private String teacher;
 
-    private Boolean canDuplicate;
-
     private SeasonType season;
 
     private Long yearOf;
