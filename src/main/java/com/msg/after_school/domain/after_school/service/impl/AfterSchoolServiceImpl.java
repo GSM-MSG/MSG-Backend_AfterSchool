@@ -1,12 +1,10 @@
 package com.msg.after_school.domain.after_school.service.impl;
 
-import com.msg.after_school.service.AfterSchoolService;
+import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRepository;
 import com.msg.after_school.domain.after_school.facade.AfterSchoolFacade;
-import com.msg.after_school.domain.after_school.repository.DayOfWeekRepository;
 import com.msg.after_school.domain.user.entity.User;
 import com.msg.after_school.global.user.facade.UserFacade;
 import org.springframework.stereotype.Service;
@@ -16,13 +14,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     private final AfterSchoolRepository afterSchoolRepository;
     private final UserFacade userFacade;
     private final AfterSchoolFacade afterSchoolFacade;
-    private final DayOfWeekRepository dayOfWeekRepository;
 
     @Override
     @Transactional (readOnly = true)

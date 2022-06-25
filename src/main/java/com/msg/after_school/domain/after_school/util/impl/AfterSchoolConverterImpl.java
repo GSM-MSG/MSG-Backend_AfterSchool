@@ -1,7 +1,7 @@
 package com.msg.after_school.domain.after_school.util.impl;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
-import com.msg.after_school.util.AfterSchoolConverter;
 import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
+import com.msg.after_school.domain.after_school.util.AfterSchoolConverter;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -2,9 +2,8 @@ package com.msg.after_school.domain.after_school.controller;
 
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
-import com.msg.after_school.service.AfterSchoolService;
-import com.msg.after_school.util.AfterSchoolConverter;
-import com.msg.after_school.util.SearchConditionConverter;
+import com.msg.after_school.domain.after_school.service.AfterSchoolService;
+import com.msg.after_school.domain.after_school.util.AfterSchoolConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,6 @@ import java.util.List;
 @Slf4j
 public class AfterSchoolController {
 
-    private final SearchConditionConverter searchConditionConverter;
     private final AfterSchoolService afterSchoolService;
     private final AfterSchoolConverter afterSchoolConverter;
 
@@ -35,7 +33,6 @@ public class AfterSchoolController {
     }
     @PostMapping("/apply") //방과후산청을 등록한다.
     public ResponseEntity applyAfterSchool(@RequestBody ApplyAfterSchoolDto applyAfterSchoolDto) {
-        //유저 이메일을 받아온다
         //유저 이메이을 토대로 유저 정보를 찾는다
         //유저 정보와 클럽데이터를 토대로 수강테이블에 삽입한다.
         afterSchoolService.applyAfterSchool(applyAfterSchoolDto.getAfterSchoolId());
