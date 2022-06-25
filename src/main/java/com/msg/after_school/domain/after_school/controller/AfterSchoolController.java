@@ -10,6 +10,7 @@ import com.msg.after_school.domain.after_school.data.type.SeasonType;
 import com.msg.after_school.domain.after_school.util.AfterSchoolConverter;
 import com.msg.after_school.domain.after_school.util.SearchConditionConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,7 @@ public class AfterSchoolController {
     @PostMapping("/apply") //방과후산청을 등록한다.
     public ResponseEntity applyAfterSchool(@RequestBody ApplyAfterSchoolDto applyAfterSchoolDto) {
         afterSchoolService.applyAfterSchool(applyAfterSchoolDto.getAfterSchoolId());
-        return ResponseEntity.ok().build();
+        return new ResponseEntity(HttpStatus.CREATED);
     }
     @PostMapping("/cancel") //방과후신청을 취소한다.
     public ResponseEntity cancelAfterSchool() {
