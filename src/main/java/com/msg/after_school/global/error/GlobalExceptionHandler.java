@@ -1,8 +1,7 @@
 package com.msg.after_school.global.error;
 
-import com.msg.after_school.global.error.exception.AfterSchoolException;
+import com.msg.after_school.global.error.exception.GlobalException;
 import com.msg.after_school.global.error.exception.ErrorCode;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -17,8 +16,8 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler({AfterSchoolException.class})
-    public ResponseEntity<ErrorResponse> handleGlobalException(AfterSchoolException e) {
+    @ExceptionHandler(GlobalException.class)
+    public ResponseEntity<ErrorResponse> handleGlobalException(GlobalException e) {
         ErrorCode errorCode = e.getErrorCode();
         return new ResponseEntity(
                 new ErrorResponse(errorCode.getStatus(), errorCode.getMessage()),
@@ -26,7 +25,7 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler({BindException.class})
+    @ExceptionHandler(BindException.class)
     public ResponseEntity bindException(BindException e) {
         Map<String, String> errorMap = new HashMap<>();
         for (FieldError error : e.getFieldErrors()) {
@@ -35,7 +34,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity(errorMap, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({ConstraintViolationException.class})
+    @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity constraintViolationException(ConstraintViolationException e) {
         Map<String, String> errorMap = new HashMap<>();
         int i = 0;
