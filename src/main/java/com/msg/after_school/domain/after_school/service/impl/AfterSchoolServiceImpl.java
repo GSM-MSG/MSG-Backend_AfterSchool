@@ -39,8 +39,6 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
     public void applyAfterSchool(Long AfterSchoolId) {
         AfterSchool afterSchoolInfo=afterSchoolFacade.getAfterSchoolByAfterSchoolId(AfterSchoolId);
         User userInfo=userFacade.getCurrentUser();
-
-        System.out.println(afterSchoolInfo);
     }
 
 
