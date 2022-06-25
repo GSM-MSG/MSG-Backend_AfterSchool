@@ -22,7 +22,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     @Override
     @Transactional (readOnly = true)
-    public List<AfterSchool> findAfterSchoolListBySearchCondition() { // 1 학년 월 , 수
+    public List<AfterSchool> findAfterSchoolList() { // 1 학년 월 , 수
         List<AfterSchool> afterSchoolList = afterSchoolRepository.findAllByIsOpened(true);
         return afterSchoolList;
     }

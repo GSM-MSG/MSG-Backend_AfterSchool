@@ -6,7 +6,7 @@ import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import java.util.List;
 
 public interface AfterSchoolService {
-    List<AfterSchool> findAfterSchoolListBySearchCondition();
+    List<AfterSchool> findAfterSchoolList();
 
     void applyAfterSchool(Long AfterSchoolId);
 }

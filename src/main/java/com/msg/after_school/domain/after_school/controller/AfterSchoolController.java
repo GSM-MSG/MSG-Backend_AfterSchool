@@ -26,7 +26,7 @@ public class AfterSchoolController {
     @ResponseBody
     public ResponseEntity<List<AfterSchoolResponse>> findAfterSchoolList() {
         //Request정보를 검색조건 Dto로 치환한다.
-        List<AfterSchool> dtoList = afterSchoolService.findAfterSchoolListBySearchCondition();
+        List<AfterSchool> dtoList = afterSchoolService.findAfterSchoolList();
         //받아온 목록을 응답값으로 치환한다.
         List<AfterSchoolResponse> responseList = afterSchoolConverter.toResponse(dtoList);
         return new ResponseEntity<>(responseList, HttpStatus.OK);
