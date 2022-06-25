@@ -13,7 +13,7 @@ import java.util.Optional;
 public class AfterSchoolFacade {
     private final AfterSchoolRepository afterSchoolRepository;
 
-    public AfterSchool getAfterSchoolByAfterSchoolId(Long afterSchoolId){
-        return afterSchoolRepository.findById(afterSchoolId).orElseThrow(()->new AfterSchoolNotFoundException()) ;
+    public AfterSchool getAfterSchoolByAfterSchoolId(Long Id){
+        return afterSchoolRepository.findById(Id).orElseThrow(()->new AfterSchoolNotFoundException()) ;
     }
 }
