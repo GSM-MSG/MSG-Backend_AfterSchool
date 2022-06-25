@@ -35,9 +35,7 @@ public class AfterSchoolController {
     }
     @PostMapping("/apply") //방과후산청을 등록한다.
     public ResponseEntity applyAfterSchool(@RequestBody ApplyAfterSchoolDto applyAfterSchoolDto) {
-        //유저 이메일을 받아온다
-        //유저 이메이을 토대로 유저 정보를 찾는다
-        //유저 정보와 클럽데이터를 토대로 수강테이블에 삽입한다.
+        afterSchoolService.applyAfterSchool(applyAfterSchoolDto.getAfterSchoolId());
         return ResponseEntity.ok().build();
     }
     @PostMapping("/cancel") //방과후신청을 취소한다.

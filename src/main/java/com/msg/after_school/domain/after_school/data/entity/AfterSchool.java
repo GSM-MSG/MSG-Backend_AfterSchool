@@ -37,9 +37,6 @@ public class AfterSchool {
 
     private String teacher;
 
-    @Column(columnDefinition = "TINYINT")
-    private Boolean canDuplicate;
-
     @Enumerated(EnumType.STRING)
     private SeasonType season;
 
