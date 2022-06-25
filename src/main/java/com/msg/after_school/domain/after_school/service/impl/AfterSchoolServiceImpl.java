@@ -25,7 +25,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
     private final DayOfWeekRepository dayOfWeekRepository;
 
     @Override
-    @Transactional
+    @Transactional (readOnly = true)
     public List<AfterSchool> findAfterSchoolListBySearchCondition() { // 1 학년 월 , 수
         List<AfterSchool> afterSchoolList = afterSchoolRepository.findAllByIsOpened(true);
         return afterSchoolList;
