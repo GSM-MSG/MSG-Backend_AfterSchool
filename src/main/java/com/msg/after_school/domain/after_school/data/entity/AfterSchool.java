@@ -1,5 +1,6 @@
 package com.msg.after_school.domain.after_school.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.msg.after_school.domain.after_school.data.type.SeasonType;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class AfterSchool {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
