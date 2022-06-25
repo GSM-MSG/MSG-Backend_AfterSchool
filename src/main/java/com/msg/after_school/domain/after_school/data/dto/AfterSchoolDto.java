@@ -22,6 +22,7 @@ public class AfterSchoolDto {
 
     private String teacher;
 
+    @Enumerated(EnumType.STRING)
     private SeasonType season;
 
     private Long yearOf;
