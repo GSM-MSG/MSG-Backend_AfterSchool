@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Teacher{
     @Id
-    private String email;
+    private String userId;
 
     private String password;
 
