@@ -1,5 +1,6 @@
 package com.msg.after_school.domain.after_school.service.impl;
 
+
 import com.msg.after_school.domain.after_school.data.dto.AfterSchoolDto;
 import com.msg.after_school.domain.after_school.data.dto.SearchConditionDto;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
@@ -25,22 +26,18 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AfterSchoolServiceImpl implements AfterSchoolService {
+
     private final AfterSchoolRepository afterSchoolRepository;
     private final AfterSchoolRegistrationRepository afterSchoolRegistrationRepository;
-    private final DayOfWeekRepository dayOfWeekRepository;
-
-    private final AfterSchoolFacade afterSchoolFacade;
-    private final UserFacade userFacade;
-
     private final AfterSchoolRegistrationPolicyValidator afterSchoolRegistrationPolicyValidator;
+    private final UserFacade userFacade;
+    private final AfterSchoolFacade afterSchoolFacade;
 
-    @Override @Transactional
-    public List<AfterSchoolDto> findAfterSchoolListBySearchCondition(SearchConditionDto searchConditionDto) {
-        Integer grade = searchConditionDto.getGrade();
-        SeasonType season = searchConditionDto.getSeason();
-        DayOfWeek dayOfWeek = searchConditionDto.getWeek();
-        List<AfterSchool> data = afterSchoolRepository.findAllByGradeAndDayOfWeekAndSeason(grade,dayOfWeek,season);
-        return null;
+    @Override
+    @Transactional (readOnly = true)
+    public List<AfterSchool> findAfterSchoolList() { // 1 학년 월 , 수
+        List<AfterSchool> afterSchoolList = afterSchoolRepository.findAllByIsOpened(true);
+        return afterSchoolList;
     }
 
     @Override
@@ -57,6 +54,4 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
                 .build();
         afterSchoolRegistrationRepository.save(classRegistration);
     }
-
-
 }
