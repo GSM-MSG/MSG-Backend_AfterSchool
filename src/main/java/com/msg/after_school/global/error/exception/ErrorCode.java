@@ -13,6 +13,8 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "Not Found User"),
     AFTERSCHOOL_NOT_FOUND(404,"Not Found AfterSchool"),
 
+    AFTERSHCOOL_CONFLICT(409,"Conflict AfterSchool"),
+
     UNKNOWN(500, "Unknown error");
 
     private final int status;

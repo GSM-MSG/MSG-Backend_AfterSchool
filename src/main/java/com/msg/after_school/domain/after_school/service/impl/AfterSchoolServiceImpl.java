@@ -5,6 +5,7 @@ import com.msg.after_school.domain.after_school.data.entity.ClassRegistration;
 import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
 import com.msg.after_school.domain.after_school.data.dto.AfterSchoolDto;
 import com.msg.after_school.domain.after_school.data.dto.SearchConditionDto;
+import com.msg.after_school.domain.after_school.exception.AfterSchoolConflictException;
 import com.msg.after_school.domain.after_school.facade.AfterSchoolFacade;
 import com.msg.after_school.domain.after_school.repository.ClassRegistrationRepository;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -43,13 +45,15 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
         return null;
     }
 
-    @SneakyThrows
     @Override
     public void applyAfterSchool(Long AfterSchoolId) {
         AfterSchool afterSchoolInfo=afterSchoolFacade.getAfterSchoolByAfterSchoolId(AfterSchoolId);
         User userInfo=userFacade.getCurrentUser();
 
-        List<ClassRegistration> classRegistrationList=classRegistrationRepository.findAll();
+        Boolean classRegistrationList = classRegistrationRepository.existsByUserAndAfterSchool(userInfo,afterSchoolInfo);
+
+
+        if(classRegistrationList) throw new AfterSchoolConflictException ();
 
         ClassRegistration classRegistration=ClassRegistration.builder()
                 .afterSchool(afterSchoolInfo)
