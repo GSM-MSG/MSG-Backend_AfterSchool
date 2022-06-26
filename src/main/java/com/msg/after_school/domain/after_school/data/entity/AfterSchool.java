@@ -2,10 +2,7 @@ package com.msg.after_school.domain.after_school.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.msg.after_school.domain.after_school.data.type.SeasonType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 

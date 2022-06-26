@@ -8,8 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
-public interface ClassRegistrationRepository extends JpaRepository<ClassRegistration,Long> {
+public interface AfterSchoolRegistrationRepository extends JpaRepository<ClassRegistration,Long> {
+    @Query("select distinct c from ClassRegistration c join fetch c.afterSchool")
+    List<ClassRegistration> findAllJoinFetch();
 
     Boolean existsByUserAndAfterSchool(User users_email, AfterSchool afterschool_id);
 
