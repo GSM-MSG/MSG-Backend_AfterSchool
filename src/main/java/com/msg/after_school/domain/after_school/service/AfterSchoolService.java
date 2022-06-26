@@ -9,4 +9,6 @@ public interface AfterSchoolService {
     List<AfterSchool> findAfterSchoolList();
 
     void applyAfterSchool(Long AfterSchoolId);
+
+    void cancleApplyAfterSchool(Long AfterSchoolId);
 }

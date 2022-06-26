@@ -29,7 +29,12 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     @Override
     public void applyAfterSchool(Long AfterSchoolId) {
-        AfterSchool afterSchoolInfo=afterSchoolFacade.getAfterSchoolByAfterSchoolId(AfterSchoolId);
+        AfterSchool afterSchoolInfo =afterSchoolFacade.getAfterSchoolByAfterSchoolId(AfterSchoolId);
         User userInfo=userFacade.getCurrentUser();
+    }
+
+    @Override
+    public void cancleApplyAfterSchool(Long AfterSchoolId) {
+
     }
 }
