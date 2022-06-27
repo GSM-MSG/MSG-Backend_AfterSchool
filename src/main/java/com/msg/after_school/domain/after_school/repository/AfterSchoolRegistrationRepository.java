@@ -15,5 +15,5 @@ public interface AfterSchoolRegistrationRepository extends JpaRepository<ClassRe
     List<ClassRegistration> findAllJoinFetch();
 
     Boolean existsByUserAndAfterSchool(User users_email, AfterSchool afterschool_id);
-
+    void deleteByAfterSchoolAndUser(AfterSchool afterSchool, User user);
 }

@@ -5,4 +5,5 @@ import com.msg.after_school.domain.user.entity.User;
 
 public interface AfterSchoolRegistrationPolicyValidator {
     void validate(AfterSchool afterSchoolInfo, User userInfo);
+    void validateCancelPolicy(AfterSchool afterSchoolInfo, User userInfo);
 }
