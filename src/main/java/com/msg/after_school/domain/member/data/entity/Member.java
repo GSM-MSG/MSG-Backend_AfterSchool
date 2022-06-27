@@ -13,7 +13,7 @@ public class Member {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userEmail")
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
