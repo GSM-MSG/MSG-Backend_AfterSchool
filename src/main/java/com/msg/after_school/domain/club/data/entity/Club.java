@@ -39,7 +39,7 @@ public class Club {
     private String notionLink;
 
     @OneToMany(mappedBy = "club", cascade = CascadeType.REMOVE)
-    private List<Member> members;
+    private List<Member> member;
 
     @OneToMany(mappedBy = "club", cascade = CascadeType.REMOVE)
     private List<Image> activityUrls;
