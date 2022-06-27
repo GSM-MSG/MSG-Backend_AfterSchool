@@ -16,8 +16,8 @@ public enum ErrorCode {
     BAD_REQUEST_ALREADY_JOINED_ANOTHER_AFTERSCHOOL (400,"Already joined another afterSchool"),
     UNKNOWN(500, "Unknown error"),
     GRADE_NOT_FOUND(404,"Not Found Grade"),
-    AFTERSCHOOL_NOT_FOUND(404,"Not Found AfterSchool");
-
+    AFTERSCHOOL_NOT_FOUND(404,"Not Found AfterSchool"),
+    USER_NOT_FOUND_REGISTRATION(400,"Not Found Register User");
     private final int status;
     private final String message;
 }
