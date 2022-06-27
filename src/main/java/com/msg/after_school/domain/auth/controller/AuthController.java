@@ -58,4 +58,9 @@ public class AuthController {
         res.addCookie(cookieUtil.createCookie("refreshToken", null, 0));
         logoutService.execute();
     }
+
+    @GetMapping("/chk")
+    public void check() {
+        return;
+    }
 }

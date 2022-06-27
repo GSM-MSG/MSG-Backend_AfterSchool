@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.GET, "/auth/*").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/auth/refresh").authenticated()
                 .antMatchers(HttpMethod.PATCH, "/auth").authenticated()
+                .antMatchers(HttpMethod.GET, "/auth/chk").authenticated()
 
                 .anyRequest().permitAll()
                 .and()
