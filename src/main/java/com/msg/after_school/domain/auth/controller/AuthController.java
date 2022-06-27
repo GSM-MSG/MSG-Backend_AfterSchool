@@ -14,6 +14,7 @@ import com.msg.after_school.domain.auth.service.RedirectService;
 import com.msg.after_school.global.security.utils.ConfigUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +34,16 @@ public class AuthController {
     private final LoginService loginService;
     private final RedirectService redirectService;
 
+    @Value("front.url")
+    private final String frontUrl;
+
     @GetMapping("/login")
     public ResponseEntity redirectGoogleInitUrl() {
         return loginService.execute();
     }
 
     @GetMapping("/redirect")
-    public void redirectUrl(@RequestParam(value = "code") String code, HttpServletResponse response) {
+    public String redirectUrl(@RequestParam(value = "code") String code, HttpServletResponse response) {
         TokenDto token = redirectService.execute(code);
         Cookie accessCookie = new Cookie("accessToken", "Bearer " + token.getAccessToken());
         accessCookie.setPath("/");
@@ -48,5 +52,7 @@ public class AuthController {
         Cookie refreshCookie = new Cookie("refreshToken", "Bearer " + token.getRefreshToken());
         refreshCookie.setPath("/");
         refreshCookie.setMaxAge(Integer.parseInt(String.valueOf(token.getRefreshExp())));
+
+        return "redirect://" + frontUrl + "/";
     }
 }
