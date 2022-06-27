@@ -16,7 +16,6 @@ import com.msg.after_school.global.security.JwtTokenProvider;
 import com.msg.after_school.global.security.utils.ConfigUtils;
 import com.msg.after_school.global.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -31,7 +30,6 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class RedirectService {
     private final ConfigUtils configUtils;
     private final JwtTokenProvider jwtTokenProvider;
