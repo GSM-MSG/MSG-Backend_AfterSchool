@@ -44,7 +44,7 @@ public class JwtTokenProvider {
     private String generateToken(String id, String type, String secret, Long exp) {
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, secret)
-                .setSubject(id)
+                .claim("email", id)
                 .claim("type", type)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
