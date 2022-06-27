@@ -14,6 +14,7 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "Not Found User"),
     BAD_REQUEST_ALREADY_EXIST (400,"Already exist"),
     NOT_FOIND_IN_GSM(404, "This user is not exist in gsm"),
+    FORBIDDEN(403, "You don't have permisstion"),
     FAILED_TO_GOOGLE_LOGIN(403, "Failed to login with Google OAuth"),
     BAD_REQUEST_ALREADY_JOINED_ANOTHER_AFTERSCHOOL (400,"Already joined another afterSchool"),
     UNKNOWN(500, "Unknown error"),
