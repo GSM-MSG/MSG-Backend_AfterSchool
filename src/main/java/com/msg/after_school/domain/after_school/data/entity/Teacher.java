@@ -12,6 +12,4 @@ public class Teacher{
     private String userId;
 
     private String password;
-
-    private String name;
 }

@@ -1,12 +1,14 @@
 package com.msg.after_school.domain.after_school.data.entity;
 
-import com.msg.after_school.domain.user.data.entity.User;
-import lombok.Getter;
+import com.msg.after_school.domain.user.entity.User;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor @NoArgsConstructor //TODO AfterSchoolRegistration으로 Rename하기
 public class ClassRegistration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
