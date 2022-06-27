@@ -16,6 +16,7 @@ import com.msg.after_school.global.security.JwtTokenProvider;
 import com.msg.after_school.global.security.utils.ConfigUtils;
 import com.msg.after_school.global.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +31,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RedirectService {
     private final ConfigUtils configUtils;
     private final JwtTokenProvider jwtTokenProvider;
@@ -69,8 +71,8 @@ public class RedirectService {
                 JSONObject gsmUser = gsmProvider.findGSMUser(userInfoDto.getEmail());
                 String access = jwtTokenProvider.generateAccessToken(userInfoDto.getEmail());
                 String refresh = jwtTokenProvider.generateRefreshToken(userInfoDto.getEmail());
-                Long accessExp = System.currentTimeMillis() + (60 * 15) * 1000;
-                Long refreshExp = System.currentTimeMillis() + (60 * 60 * 24 * 7) * 1000;
+                Integer accessExp = 60 * 15;
+                Integer refreshExp = 60 * 60 * 24 * 7;
                 Optional<User> findUser = userRepository.findUserByEmail(userInfoDto.getEmail());
 
                 if (findUser.isPresent()) {
