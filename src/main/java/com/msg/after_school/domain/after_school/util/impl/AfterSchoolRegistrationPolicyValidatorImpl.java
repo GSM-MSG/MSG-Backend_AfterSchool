@@ -6,7 +6,7 @@ import com.msg.after_school.domain.after_school.exception.AlreadyExistException;
 import com.msg.after_school.domain.after_school.exception.AlreadyJoinedAnotherAfterSchoolException;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
-import com.msg.after_school.domain.user.entity.User;
+import com.msg.after_school.domain.user.data.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
