@@ -26,6 +26,9 @@ public class AuthController {
     private final RefreshService refreshService;
     private final LogoutService logoutService;
 
+    @Value("${front}")
+    private String frontUrl;
+
     @GetMapping("/login")
     @ResponseBody
     public ResponseEntity redirectGoogleInitUrl() {
@@ -37,14 +40,14 @@ public class AuthController {
         TokenDto token = redirectService.execute(code);
 
         if (token == null) {
-            return "redirect://FRONTURL/login";
+            return "redirect://"+ frontUrl +"/login";
         }
         Cookie accessCookie = cookieUtil.createCookie("accessToken", token.getAccessToken(), token.getAccessExp());
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
 
-        return "redirect://FRONTURL";
+        return "redirect://" + frontUrl;
     }
 
     @PatchMapping("/refresh")
