@@ -4,6 +4,7 @@ import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.ClassRegistration;
 import com.msg.after_school.domain.after_school.exception.AlreadyExistException;
 import com.msg.after_school.domain.after_school.exception.AlreadyJoinedAnotherAfterSchoolException;
+import com.msg.after_school.domain.after_school.exception.RegistrationNotFound;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
 import com.msg.after_school.domain.user.data.entity.User;
@@ -21,6 +22,19 @@ public class AfterSchoolRegistrationPolicyValidatorImpl implements AfterSchoolRe
     public void validate(AfterSchool afterSchoolInfo, User userInfo) {
         checkAlreadyRegistered (afterSchoolInfo, userInfo);
         checkRegisteredAnotherAfterSchool(afterSchoolInfo, userInfo);
+    }
+
+    @Override
+    public void validateCancelPolicy(AfterSchool afterSchoolInfo, User userInfo) {
+        checkCancleRegistered(afterSchoolInfo,userInfo);
+    }
+
+    //요청자가 취소할 방과후에 가입되어있는지 확인한다
+    private void checkCancleRegistered(AfterSchool afterSchoolInfo, User userInfo) {
+        boolean checkCancleRegistered = afterSchoolRegistrationRepository.existsByUserAndAfterSchool(userInfo,afterSchoolInfo);
+        if(!checkCancleRegistered) {
+            throw new RegistrationNotFound();
+        }
     }
 
     //요청자가 이미 해당 방과후에 신청하였는지 검사한다.
