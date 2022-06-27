@@ -10,5 +10,5 @@ public interface AfterSchoolService {
 
     void applyAfterSchool(Long AfterSchoolId);
 
-    void cancleApplyAfterSchool(Long AfterSchoolId);
+    void cancelApplyAfterSchool(Long AfterSchoolId);
 }

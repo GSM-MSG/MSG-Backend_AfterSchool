@@ -53,7 +53,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     @Override
     @Transactional
-    public void cancleApplyAfterSchool(Long AfterSchoolId) {
+    public void cancelApplyAfterSchool(Long AfterSchoolId) {
         //인자로 받은 방과후Id로 방과후정보를 가져온다.
         AfterSchool afterSchoolInfo = afterSchoolFacade.getAfterSchoolByAfterSchoolId(AfterSchoolId);
         //현재 요청을 보낸 유저의 정보를 가져온다.

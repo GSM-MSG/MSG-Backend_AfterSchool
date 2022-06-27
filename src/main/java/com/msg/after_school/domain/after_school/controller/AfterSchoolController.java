@@ -41,7 +41,7 @@ public class AfterSchoolController {
     public ResponseEntity cancelAfterSchool(@RequestBody CancleApplyAfterSchoolDto cancleApplyAfterSchoolDto) {
         //유저 이메일로 유저 찾기
         //유저 정보 클럽데이터로 수강테이블에있는 데이터 삭제
-        afterSchoolService.cancleApplyAfterSchool(cancleApplyAfterSchoolDto.getAfterSchoolId());
+        afterSchoolService.cancelApplyAfterSchool(cancleApplyAfterSchoolDto.getAfterSchoolId());
         return ResponseEntity.ok().build();
     }
     @GetMapping("/check") //오늘이 방과후 기간인지 확인한다.
