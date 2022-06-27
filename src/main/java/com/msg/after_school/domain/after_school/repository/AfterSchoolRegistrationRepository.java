@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AfterSchoolRegistrationRepository extends JpaRepository<ClassRegistration,Long> {
+public interface AfterSchoolRegistrationRepository extends JpaRepository<ClassRegistration, Integer> {
     @Query("select distinct c from ClassRegistration c join fetch c.afterSchool")
     List<ClassRegistration> findAllJoinFetch();
 

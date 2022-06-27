@@ -12,14 +12,14 @@ import javax.persistence.*;
 public class ClassRegistration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "afterschoolId")
     private AfterSchool afterSchool;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "usersEmail")
+    @JoinColumn(name = "userEmail")
     private User user;
 }
 

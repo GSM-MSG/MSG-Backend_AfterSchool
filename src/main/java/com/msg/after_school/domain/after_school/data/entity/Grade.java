@@ -14,14 +14,14 @@ import javax.persistence.*;
 public class Grade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "afterSchoolId")
     private AfterSchool afterSchool;
 
-    private Long grade;
+    private Integer grade;
 
     public void mapping(AfterSchool afterSchool){
         this.afterSchool=afterSchool;
