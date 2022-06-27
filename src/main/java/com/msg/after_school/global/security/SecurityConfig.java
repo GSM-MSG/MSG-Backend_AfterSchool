@@ -46,9 +46,7 @@ public class SecurityConfig {
 
                 .anyRequest().permitAll()
                 .and()
-                .exceptionHandling()
 
-                .and()
                 .addFilterAfter(new JwtTokenFilter(jwtTokenProvider, cookieUtil), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JwtExceptionHandler(objectMapper), UsernamePasswordAuthenticationFilter.class);
         return http.build();
