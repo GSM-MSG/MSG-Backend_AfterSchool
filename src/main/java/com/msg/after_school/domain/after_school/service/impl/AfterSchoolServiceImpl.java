@@ -1,16 +1,11 @@
 package com.msg.after_school.domain.after_school.service.impl;
 
 
-import com.msg.after_school.domain.after_school.data.dto.AfterSchoolDto;
-import com.msg.after_school.domain.after_school.data.dto.SearchConditionDto;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.ClassRegistration;
-import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
-import com.msg.after_school.domain.after_school.data.type.SeasonType;
 import com.msg.after_school.domain.after_school.facade.AfterSchoolFacade;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRepository;
-import com.msg.after_school.domain.after_school.repository.DayOfWeekRepository;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
 import com.msg.after_school.domain.user.entity.User;
