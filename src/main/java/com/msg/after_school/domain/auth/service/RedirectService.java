@@ -67,6 +67,9 @@ public class RedirectService {
             if(resultJson != null) {
                 GoogleLoginDto userInfoDto = objectMapper.readValue(resultJson, new TypeReference<GoogleLoginDto>() {});
                 JSONObject gsmUser = gsmProvider.findGSMUser(userInfoDto.getEmail());
+                if (gsmUser == null){
+                    return null;
+                }
                 String access = jwtTokenProvider.generateAccessToken(userInfoDto.getEmail());
                 String refresh = jwtTokenProvider.generateRefreshToken(userInfoDto.getEmail());
                 Integer accessExp = 60 * 15;
@@ -96,11 +99,11 @@ public class RedirectService {
                         .build();
             }
             else {
-                throw new GoogleOAuthFailedException();
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            throw new GoogleOAuthFailedException();
+            return null;
         }
     }
 }
