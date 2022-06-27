@@ -2,6 +2,7 @@ package com.msg.after_school.domain.auth.controller;
 
 import com.msg.after_school.domain.auth.data.dto.TokenDto;
 import com.msg.after_school.domain.auth.service.LoginService;
+import com.msg.after_school.domain.auth.service.LogoutService;
 import com.msg.after_school.domain.auth.service.RedirectService;
 import com.msg.after_school.domain.auth.service.RefreshService;
 import com.msg.after_school.domain.auth.utils.CookieUtil;
@@ -23,6 +24,7 @@ public class AuthController {
     private final LoginService loginService;
     private final RedirectService redirectService;
     private final RefreshService refreshService;
+    private final LogoutService logoutService;
 
     @GetMapping("/login")
     @ResponseBody
@@ -48,5 +50,12 @@ public class AuthController {
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
         res.addCookie(accessCookie);
         res.addCookie(refreshCookie);
+    }
+
+    @PatchMapping("/")
+    public void logout(HttpServletResponse res) {
+        res.addCookie(cookieUtil.createCookie("accessToken", null, 0));
+        res.addCookie(cookieUtil.createCookie("refreshToken", null, 0));
+        logoutService.execute();
     }
 }
