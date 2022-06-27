@@ -7,9 +7,7 @@ import com.msg.after_school.domain.after_school.exception.AlreadyJoinedAnotherAf
 import com.msg.after_school.domain.after_school.exception.RegistrationNotFound;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
-import com.msg.after_school.domain.user.entity.User;
-import com.msg.after_school.global.error.exception.ErrorCode;
-import com.msg.after_school.global.user.exception.UserNotFoundException;
+import com.msg.after_school.domain.user.data.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

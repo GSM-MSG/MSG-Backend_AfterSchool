@@ -8,7 +8,7 @@ import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrati
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRepository;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
-import com.msg.after_school.domain.user.entity.User;
+import com.msg.after_school.domain.user.data.entity.User;
 import com.msg.after_school.global.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

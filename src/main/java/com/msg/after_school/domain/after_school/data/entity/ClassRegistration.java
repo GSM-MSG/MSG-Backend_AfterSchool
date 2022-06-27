@@ -1,6 +1,6 @@
 package com.msg.after_school.domain.after_school.data.entity;
 
-import com.msg.after_school.domain.user.entity.User;
+import com.msg.after_school.domain.user.data.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,11 +15,11 @@ public class ClassRegistration {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "afterschool_id")
+    @JoinColumn(name = "afterschoolId")
     private AfterSchool afterSchool;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "users_email")
+    @JoinColumn(name = "usersEmail")
     private User user;
 }
 
