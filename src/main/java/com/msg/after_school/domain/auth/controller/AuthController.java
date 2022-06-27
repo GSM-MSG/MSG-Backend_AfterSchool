@@ -35,12 +35,16 @@ public class AuthController {
     @GetMapping("/redirect")
     public String redirectUrl(@RequestParam(value = "code") String code, HttpServletResponse response) {
         TokenDto token = redirectService.execute(code);
+
+        if (token == null) {
+            return "redirect://FRONTURL/login";
+        }
         Cookie accessCookie = cookieUtil.createCookie("accessToken", token.getAccessToken(), token.getAccessExp());
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
 
-        return "redirect://FRONTURL/";
+        return "redirect://FRONTURL";
     }
 
     @PatchMapping("/refresh")
