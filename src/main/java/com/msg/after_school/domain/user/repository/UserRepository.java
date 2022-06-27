@@ -1,6 +1,6 @@
 package com.msg.after_school.domain.user.repository;
 
-import com.msg.after_school.domain.user.entity.User;
+import com.msg.after_school.domain.user.data.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

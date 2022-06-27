@@ -1,6 +1,6 @@
 package com.msg.after_school.global.user.facade;
 
-import com.msg.after_school.domain.user.entity.User;
+import com.msg.after_school.domain.user.data.entity.User;
 import com.msg.after_school.global.user.exception.UserNotFoundException;
 import com.msg.after_school.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

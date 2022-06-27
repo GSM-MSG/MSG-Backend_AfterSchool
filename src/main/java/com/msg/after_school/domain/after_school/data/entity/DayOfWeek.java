@@ -17,7 +17,7 @@ public class DayOfWeek {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "afterSchool_id")
+    @JoinColumn(name = "afterSchoolId")
     private AfterSchool afterSchool;
 
     private String dayOfWeek;

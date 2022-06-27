@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRepository;
 import com.msg.after_school.domain.after_school.facade.AfterSchoolFacade;
-import com.msg.after_school.domain.user.entity.User;
+import com.msg.after_school.domain.user.data.entity.User;
 import com.msg.after_school.global.user.facade.UserFacade;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
