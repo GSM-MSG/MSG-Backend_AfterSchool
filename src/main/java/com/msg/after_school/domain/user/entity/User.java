@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 @Table(name = "users") // 나중에 본 DB 연결 할때 지워야됨
 public class User {
     @Id
