@@ -2,7 +2,6 @@ package com.msg.after_school.global.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.msg.after_school.domain.auth.utils.CookieUtil;
-import com.msg.after_school.global.error.CustomAuthenticationEntryPoint;
 import com.msg.after_school.global.security.exception.handler.JwtExceptionHandler;
 import com.msg.after_school.global.security.filter.JwtTokenFilter;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +47,6 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
 
                 .and()
                 .addFilterAfter(new JwtTokenFilter(jwtTokenProvider, cookieUtil), UsernamePasswordAuthenticationFilter.class)
