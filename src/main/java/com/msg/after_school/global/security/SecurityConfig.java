@@ -38,6 +38,7 @@ public class SecurityConfig {
 
                 .antMatchers(HttpMethod.GET, "/afterschool/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/afterschool/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/auth/*").permitAll()
 
                 .anyRequest().permitAll()
                 .and()
