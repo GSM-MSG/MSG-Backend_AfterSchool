@@ -2,7 +2,7 @@ package com.msg.after_school.domain.after_school.repository;
 
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.ClassRegistration;
-import com.msg.after_school.domain.user.entity.User;
+import com.msg.after_school.domain.user.data.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

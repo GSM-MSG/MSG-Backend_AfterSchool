@@ -18,7 +18,7 @@ public class Grade {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "afterSchool_id")
+    @JoinColumn(name = "afterSchoolId")
     private AfterSchool afterSchool;
 
     private Long grade;
