@@ -12,7 +12,8 @@ public enum ErrorCode {
     EXPIRED_TOKEN(401, "Expired Token"),
     INVALID_TOKEN(401, "Invalid Token"),
     USER_NOT_FOUND(404, "Not Found User"),
-    AFTERSHCOOL_CONFLICT(409,"Conflict AfterSchool"),
+    BAD_REQUEST_ALREADY_EXIST (400,"Already exist"),
+    BAD_REQUEST_ALREADY_JOINED_ANOTHER_AFTERSCHOOL (400,"Already joined another afterSchool"),
     UNKNOWN(500, "Unknown error"),
     GRADE_NOT_FOUND(404,"Not Found Grade"),
     AFTERSCHOOL_NOT_FOUND(404,"Not Found AfterSchool");
