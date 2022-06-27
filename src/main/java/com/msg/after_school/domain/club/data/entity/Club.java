@@ -38,12 +38,10 @@ public class Club {
     @Column
     private String notionLink;
 
-    @OneToMany(mappedBy = "club", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "memberId", nullable = false)
-    private List<Member> member;
+    @OneToMany(mappedBy = "club", cascade = CascadeType.REMOVE)
+    private List<Member> members;
 
-    @OneToMany(mappedBy = "club", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "imageId")
+    @OneToMany(mappedBy = "club", cascade = CascadeType.REMOVE)
     private List<Image> activityUrls;
 
 

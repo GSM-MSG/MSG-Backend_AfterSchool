@@ -31,16 +31,13 @@ public class User {
     @Column
     private String userImg;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "memberId", nullable = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Member> member;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "requestJoinId", nullable = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<RequestJoin> requestJoin;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "classRegistrationId", nullable = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<ClassRegistration> classRegistration;
 
     @Column(nullable = false)
