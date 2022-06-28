@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor @NoArgsConstructor
 public class CancleApplyAfterSchoolDto {
-    private long afterSchoolId;
+    private Integer afterSchoolId;
 }

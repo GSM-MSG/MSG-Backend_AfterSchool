@@ -17,7 +17,7 @@ public class AfterSchoolConverterImpl implements AfterSchoolConverter {
                         .id(a.getId())
                         .title(a.getTitle())
                         .week(Arrays.asList(a.getDayOfWeek().stream().map(d -> d.getDayOfWeek()).toArray(String[]::new)))
-                        .grade(Arrays.asList(a.getGrade().stream().map(g -> g.getGrade()).toArray(Long[]::new)))
+                        .grade(Arrays.asList(a.getGrade().stream().map(g -> g.getGrade()).toArray(Integer[]::new)))
                         .isOpened(a.getIsOpened())
                         .build());
         });

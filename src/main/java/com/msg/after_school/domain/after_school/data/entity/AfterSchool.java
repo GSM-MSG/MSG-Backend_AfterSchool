@@ -20,7 +20,7 @@ import java.util.Set;
 public class AfterSchool {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String title;
 
@@ -37,7 +37,7 @@ public class AfterSchool {
     @Enumerated(EnumType.STRING)
     private SeasonType season;
 
-    private Long yearOf;
+    private Integer yearOf;
 
     @Column(columnDefinition = "TINYINT")
     private Boolean isOpened;
