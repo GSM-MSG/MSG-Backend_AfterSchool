@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @AllArgsConstructor @NoArgsConstructor
-public class CancleApplyAfterSchoolDto {
+public class CancelApplyAfterSchoolDto {
     private Integer afterSchoolId;
 }
