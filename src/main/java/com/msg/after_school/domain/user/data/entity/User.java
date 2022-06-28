@@ -1,12 +1,8 @@
 package com.msg.after_school.domain.user.data.entity;
 
-import com.msg.after_school.domain.after_school.data.entity.ClassRegistration;
-import com.msg.after_school.domain.member.data.entity.Member;
-import com.msg.after_school.domain.requestJoin.data.entity.RequestJoin;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Entity
@@ -30,15 +26,6 @@ public class User {
 
     @Column
     private String userImg;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private List<Member> member;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private List<RequestJoin> requestJoin;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private List<ClassRegistration> classRegistration;
 
     @Column(nullable = false)
     private String refreshToken;
