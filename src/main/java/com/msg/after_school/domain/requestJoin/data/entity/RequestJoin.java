@@ -9,13 +9,13 @@ import javax.persistence.*;
 public class RequestJoin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "clubId")
     private Club club;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userEmail")
     private User user;
 }

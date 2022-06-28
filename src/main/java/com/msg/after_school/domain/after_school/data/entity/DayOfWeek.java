@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class DayOfWeek {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)

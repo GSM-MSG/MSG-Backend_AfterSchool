@@ -21,12 +21,12 @@ public class User {
 
     private String name;
 
-    private Long grade;
+    private Integer grade;
 
     @Column(name = "class")
-    private Long class_;
+    private Integer class_;
 
-    private Long num;
+    private Integer num;
 
     @Column
     private String userImg;

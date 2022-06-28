@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor @NoArgsConstructor
 public class ApplyAfterSchoolDto {
-    private long  afterSchoolId;
+    private Integer afterSchoolId;
 }

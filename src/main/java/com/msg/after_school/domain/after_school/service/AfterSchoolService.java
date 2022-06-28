@@ -8,7 +8,7 @@ import java.util.List;
 public interface AfterSchoolService {
     List<AfterSchool> findAfterSchoolList();
 
-    void applyAfterSchool(Long AfterSchoolId);
+    void applyAfterSchool(Integer AfterSchoolId);
 
-    void cancelApplyAfterSchool(Long AfterSchoolId);
+    void cancelApplyAfterSchool(Integer AfterSchoolId);
 }

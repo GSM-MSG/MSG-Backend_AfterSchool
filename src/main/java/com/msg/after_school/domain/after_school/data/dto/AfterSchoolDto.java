@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 public class AfterSchoolDto {
-    private Long id;
+    private Integer id;
 
     private String title;
 
@@ -25,7 +25,7 @@ public class AfterSchoolDto {
     @Enumerated(EnumType.STRING)
     private SeasonType season;
 
-    private Long yearOf;
+    private Integer yearOf;
 
     private Boolean isOpened;
 
