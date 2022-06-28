@@ -1,6 +1,7 @@
 package com.msg.after_school.global.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.msg.after_school.domain.auth.utils.CookieUtil;
 import com.msg.after_school.global.security.exception.handler.JwtExceptionHandler;
 import com.msg.after_school.global.security.filter.JwtTokenFilter;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import org.springframework.web.cors.CorsUtils;
 public class SecurityConfig {
     private final JwtTokenProvider jwtTokenProvider;
     private final ObjectMapper objectMapper;
+    private final CookieUtil cookieUtil;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -36,12 +38,18 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
-                .antMatchers(HttpMethod.GET, "/afterschool/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/afterschool/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/afterschool/*").authenticated()
+                .antMatchers(HttpMethod.POST, "/afterschool/*").authenticated()
+                .antMatchers(HttpMethod.GET, "/auth/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/auth/redirect").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/auth/refresh").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/auth").authenticated()
+                .antMatchers(HttpMethod.GET, "/auth/chk").authenticated()
 
                 .anyRequest().permitAll()
                 .and()
-                .addFilterAfter(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+
+                .addFilterAfter(new JwtTokenFilter(jwtTokenProvider, cookieUtil), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JwtExceptionHandler(objectMapper), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
