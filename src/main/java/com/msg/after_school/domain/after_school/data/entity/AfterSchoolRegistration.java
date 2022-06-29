@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Builder
-@AllArgsConstructor @NoArgsConstructor //TODO AfterSchoolRegistration으로 Rename하기
+@AllArgsConstructor @NoArgsConstructor
 @Table(name = "classRegistration")
 public class AfterSchoolRegistration {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
