@@ -8,7 +8,7 @@ import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrati
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
 import com.msg.after_school.domain.user.data.entity.User;
-import com.msg.after_school.global.user.dao.UserDao;
+import com.msg.after_school.global.user.dao.impl.UserDaoImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import java.util.List;
 public class AfterSchoolServiceImpl implements AfterSchoolService {
     private final AfterSchoolRegistrationRepository afterSchoolRegistrationRepository;
     private final AfterSchoolRegistrationPolicyValidator afterSchoolRegistrationPolicyValidator;
-    private final UserDao userDao;
+    private final UserDaoImpl userDao;
     private final AfterSchoolDaoImpl afterSchoolDao;
 
     @Override

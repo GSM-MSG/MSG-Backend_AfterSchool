@@ -3,7 +3,7 @@ package com.msg.after_school.domain.auth.service;
 import com.msg.after_school.domain.auth.data.dto.TokenDto;
 import com.msg.after_school.domain.user.data.entity.User;
 import com.msg.after_school.global.security.JwtTokenProvider;
-import com.msg.after_school.global.user.dao.UserDao;
+import com.msg.after_school.global.user.dao.impl.UserDaoImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RefreshService {
     private final JwtTokenProvider jwtTokenProvider;
-    private final UserDao userDao;
+    private final UserDaoImpl userDao;
 
     public TokenDto execute() {
         User user = userDao.getCurrentUser();
