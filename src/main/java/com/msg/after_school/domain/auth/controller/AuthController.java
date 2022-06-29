@@ -1,10 +1,10 @@
 package com.msg.after_school.domain.auth.controller;
 
 import com.msg.after_school.domain.auth.data.dto.TokenDto;
-import com.msg.after_school.domain.auth.service.impl.LoginServiceImpl;
-import com.msg.after_school.domain.auth.service.impl.LogoutServiceImpl;
-import com.msg.after_school.domain.auth.service.impl.RedirectServiceImpl;
-import com.msg.after_school.domain.auth.service.impl.RefreshServiceImpl;
+import com.msg.after_school.domain.auth.service.LoginService;
+import com.msg.after_school.domain.auth.service.LogoutService;
+import com.msg.after_school.domain.auth.service.RedirectService;
+import com.msg.after_school.domain.auth.service.RefreshService;
 import com.msg.after_school.domain.auth.utils.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class AuthController {
     private final CookieUtil cookieUtil;
-    private final LoginServiceImpl loginService;
-    private final RedirectServiceImpl redirectService;
-    private final RefreshServiceImpl refreshService;
-    private final LogoutServiceImpl logoutService;
+    private final LoginService loginService;
+    private final RedirectService redirectService;
+    private final RefreshService refreshService;
+    private final LogoutService logoutService;
 
     @Value("${front}")
     private String frontUrl;

@@ -14,22 +14,14 @@ import javax.persistence.*;
 public class User {
     @Id
     private String email;
-
     private String name;
-
     private Integer grade;
-
     @Column(name = "class")
     private Integer class_;
-
     private Integer num;
-
-    @Column
     private String userImg;
-
     @Column(nullable = false)
     private String refreshToken;
-
     public void updateRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }

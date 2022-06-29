@@ -7,6 +7,7 @@ import com.msg.after_school.domain.after_school.util.AfterSchoolConverter;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class AfterSchoolConverterImpl implements AfterSchoolConverter {
@@ -16,11 +17,11 @@ public class AfterSchoolConverterImpl implements AfterSchoolConverter {
         dtoList.forEach(dto -> {
             Integer id=dto.getId();
             String title=dto.getTitle();
-            String[] dayOfWeek = dto.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).toArray(String[]::new);
-            Integer[] grade=dto.getGrade().stream().map(Grade::getGrade).toArray(Integer[]::new);
+            List<String> dayOfWeek = dto.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).collect(Collectors.toList());
+            List<Integer> grade=dto.getGrade().stream().map(Grade::getGrade).collect(Collectors.toList());
             Boolean isOpened=dto.getIsOpened();
 
-            afterSchoolResponses.add(new AfterSchoolResponse(id,title,List.of(dayOfWeek),List.of(grade),isOpened));
+            afterSchoolResponses.add(new AfterSchoolResponse(id,title,dayOfWeek,grade,isOpened));
         });
         return afterSchoolResponses;
     }

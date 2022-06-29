@@ -1,14 +1,14 @@
 package com.msg.after_school.domain.after_school.service.impl;
 
 
+import com.msg.after_school.domain.after_school.dao.AfterSchoolDao;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
-import com.msg.after_school.domain.after_school.dao.impl.AfterSchoolDaoImpl;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
 import com.msg.after_school.domain.user.data.entity.User;
-import com.msg.after_school.global.user.dao.impl.UserDaoImpl;
+import com.msg.after_school.global.user.dao.UserDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,8 @@ import java.util.List;
 public class AfterSchoolServiceImpl implements AfterSchoolService {
     private final AfterSchoolRegistrationRepository afterSchoolRegistrationRepository;
     private final AfterSchoolRegistrationPolicyValidator afterSchoolRegistrationPolicyValidator;
-    private final UserDaoImpl userDao;
-    private final AfterSchoolDaoImpl afterSchoolDao;
+    private final UserDao userDao;
+    private final AfterSchoolDao afterSchoolDao;
 
     @Override
     @Transactional (readOnly = true)
