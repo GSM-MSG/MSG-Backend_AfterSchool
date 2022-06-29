@@ -12,13 +12,13 @@ public class AfterSchoolConverterImpl implements AfterSchoolConverter {
     @Override
     public List<AfterSchoolResponse> toResponse(List<AfterSchool> dtoList) {
         List<AfterSchoolResponse> afterSchoolResponses = new ArrayList<>();
-        dtoList.forEach(a -> {
+        dtoList.forEach(dto -> {
             afterSchoolResponses.add(AfterSchoolResponse.builder()
-                        .id(a.getId())
-                        .title(a.getTitle())
-                        .week(Arrays.asList(a.getDayOfWeek().stream().map(d -> d.getDayOfWeek()).toArray(String[]::new)))
-                        .grade(Arrays.asList(a.getGrade().stream().map(g -> g.getGrade()).toArray(Integer[]::new)))
-                        .isOpened(a.getIsOpened())
+                        .id(dto.getId())
+                        .title(dto.getTitle())
+                        .week(Arrays.asList(dto.getDayOfWeek().stream().map(d -> d.getDayOfWeek()).toArray(String[]::new)))
+                        .grade(Arrays.asList(dto.getGrade().stream().map(g -> g.getGrade()).toArray(Integer[]::new)))
+                        .isOpened(dto.getIsOpened())
                         .build());
         });
         return afterSchoolResponses;

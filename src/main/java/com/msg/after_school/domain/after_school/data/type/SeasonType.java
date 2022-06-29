@@ -6,5 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum SeasonType {
-    FIRST,SECOND,SUMMER,WINTER
+    FIRST, SECOND, SUMMER, WINTER
 }

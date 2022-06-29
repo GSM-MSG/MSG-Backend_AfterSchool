@@ -1,13 +1,10 @@
 package com.msg.after_school.domain.after_school.data.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@Builder
-@AllArgsConstructor @NoArgsConstructor
+@RequiredArgsConstructor
 public class CancelApplyAfterSchoolDto {
-    private Integer afterSchoolId;
+    private final Integer afterSchoolId;
 }

@@ -82,10 +82,10 @@ public class RedirectService {
                 } else {
                     User user = User.builder()
                             .email(userInfoDto.getEmail())
-                            .class_((Long) gsmUser.get("class"))
-                            .grade((Long) gsmUser.get("grade"))
+                            .class_((Integer) gsmUser.get("class"))
+                            .grade((Integer) gsmUser.get("grade"))
                             .name((String) gsmUser.get("name"))
-                            .num((Long) gsmUser.get("num"))
+                            .num((Integer) gsmUser.get("num"))
                             .userImg(userInfoDto.getPicture())
                             .refreshToken(refresh)
                             .build();

@@ -18,35 +18,17 @@ import java.util.Set;
 @NoArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class AfterSchool {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String title;
-
-//    private Long personnel;
-
     @OneToMany(mappedBy = "afterSchool")
     private List<Grade> grade;
-
     @OneToMany(mappedBy = "afterSchool")
     private List<DayOfWeek> dayOfWeek;
-
     private String teacher;
-
     @Enumerated(EnumType.STRING)
     private SeasonType season;
-
     private Integer yearOf;
-
     @Column(columnDefinition = "TINYINT")
     private Boolean isOpened;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "afterSchool", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private Set<ClassRegistration> classRegistration = new HashSet<>();
-
-    public void changeIsOpened(boolean isOpened) {
-        this.isOpened = isOpened;
-    }
 }

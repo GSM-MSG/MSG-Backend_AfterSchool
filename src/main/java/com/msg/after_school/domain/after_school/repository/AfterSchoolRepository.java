@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface AfterSchoolRepository extends JpaRepository<AfterSchool, Integer> {
     List<AfterSchool> findAllByIsOpened(Boolean isOpened);
-    Optional<AfterSchool> findById(Long Id);
+    Optional<AfterSchool> findById(Integer id);
 }

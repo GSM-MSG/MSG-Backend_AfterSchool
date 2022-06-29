@@ -11,18 +11,11 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor @NoArgsConstructor
 public class DayOfWeek {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "afterSchoolId")
     private AfterSchool afterSchool;
-
     private String dayOfWeek;
-
-    public void mapping(AfterSchool afterSchool){
-        this.afterSchool=afterSchool;
-    }
 }

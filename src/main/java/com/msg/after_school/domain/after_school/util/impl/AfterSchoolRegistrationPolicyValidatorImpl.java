@@ -1,7 +1,7 @@
 package com.msg.after_school.domain.after_school.util.impl;
 
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
-import com.msg.after_school.domain.after_school.data.entity.ClassRegistration;
+import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
 import com.msg.after_school.domain.after_school.exception.AlreadyExistException;
 import com.msg.after_school.domain.after_school.exception.AlreadyJoinedAnotherAfterSchoolException;
 import com.msg.after_school.domain.after_school.exception.RegistrationNotFound;
@@ -26,13 +26,13 @@ public class AfterSchoolRegistrationPolicyValidatorImpl implements AfterSchoolRe
 
     @Override
     public void validateCancelPolicy(AfterSchool afterSchoolInfo, User userInfo) {
-        checkCancleRegistered(afterSchoolInfo,userInfo);
+        checkCancelRegistered (afterSchoolInfo,userInfo);
     }
 
     //요청자가 취소할 방과후에 가입되어있는지 확인한다
-    private void checkCancleRegistered(AfterSchool afterSchoolInfo, User userInfo) {
-        boolean checkCancleRegistered = afterSchoolRegistrationRepository.existsByUserAndAfterSchool(userInfo,afterSchoolInfo);
-        if(!checkCancleRegistered) {
+    private void checkCancelRegistered(AfterSchool afterSchoolInfo, User userInfo) {
+        boolean checkCancelRegistered = afterSchoolRegistrationRepository.existsByUserAndAfterSchool(userInfo,afterSchoolInfo);
+        if(!checkCancelRegistered) {
             throw new RegistrationNotFound();
         }
     }
@@ -47,19 +47,17 @@ public class AfterSchoolRegistrationPolicyValidatorImpl implements AfterSchoolRe
 
     //요청자가 같은 요일에 진행하는 다른 방과후에 신청하였는지 검사한다.
     private void checkRegisteredAnotherAfterSchool(AfterSchool afterSchoolInfo, User userInfo) {
-        List<ClassRegistration> allAfterSchool = afterSchoolRegistrationRepository.findAllJoinFetch();
+        List<AfterSchoolRegistration> allAfterSchool = afterSchoolRegistrationRepository.findAllJoinFetch();
         boolean checkRegisteredAnotherAfterSchool = allAfterSchool.stream().noneMatch (afterSchoolRegistration ->
                 checkDayOfWeek(afterSchoolRegistration, afterSchoolInfo) && checkUser(afterSchoolRegistration, userInfo));
 
-        if(!checkRegisteredAnotherAfterSchool) {
-            throw new AlreadyJoinedAnotherAfterSchoolException();
-        }
+        if(!checkRegisteredAnotherAfterSchool) throw new AlreadyJoinedAnotherAfterSchoolException();
     }
 
-    private Boolean checkUser(ClassRegistration afterSchoolRegistration, User userInfo) {
+    private Boolean checkUser(AfterSchoolRegistration afterSchoolRegistration, User userInfo) {
         return Objects.equals(afterSchoolRegistration.getUser().getEmail(), userInfo.getEmail());
     }
-    private Boolean checkDayOfWeek(ClassRegistration afterSchoolRegistration, AfterSchool afterSchoolInfo) {
+    private Boolean checkDayOfWeek(AfterSchoolRegistration afterSchoolRegistration, AfterSchool afterSchoolInfo) {
         return afterSchoolRegistration.getAfterSchool().getDayOfWeek().stream().noneMatch(dow -> afterSchoolInfo.getDayOfWeek().contains(dow));
     }
 }
