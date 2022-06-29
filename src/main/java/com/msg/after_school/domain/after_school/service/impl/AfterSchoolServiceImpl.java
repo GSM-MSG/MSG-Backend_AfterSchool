@@ -3,7 +3,7 @@ package com.msg.after_school.domain.after_school.service.impl;
 
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
-import com.msg.after_school.domain.after_school.dao.AfterSchoolDao;
+import com.msg.after_school.domain.after_school.dao.impl.AfterSchoolDaoImpl;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
@@ -23,7 +23,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
     private final AfterSchoolRegistrationRepository afterSchoolRegistrationRepository;
     private final AfterSchoolRegistrationPolicyValidator afterSchoolRegistrationPolicyValidator;
     private final UserDao userDao;
-    private final AfterSchoolDao afterSchoolDao;
+    private final AfterSchoolDaoImpl afterSchoolDao;
 
     @Override
     @Transactional (readOnly = true)
