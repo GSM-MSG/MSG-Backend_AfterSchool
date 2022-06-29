@@ -1,4 +1,4 @@
-package com.msg.after_school.global.user.facade;
+package com.msg.after_school.global.user.dao;
 
 import com.msg.after_school.domain.user.data.entity.User;
 import com.msg.after_school.global.user.exception.UserNotFoundException;
@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserFacade {
+//TODO 인터페이스로 바꾸기 (안에 있는 구현체는 UserDaoImpl)
+public class UserDao {
     private final UserRepository userRepository;
 
     public User getCurrentUser() {
