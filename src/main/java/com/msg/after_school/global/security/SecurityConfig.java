@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/afterschool/*").authenticated()
                 .antMatchers(HttpMethod.GET, "/auth/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/auth/redirect").permitAll()
-                .antMatchers(HttpMethod.PATCH, "/auth/refresh").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/auth/refresh").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/auth").authenticated()
                 .antMatchers(HttpMethod.GET, "/auth/chk").authenticated()
 
