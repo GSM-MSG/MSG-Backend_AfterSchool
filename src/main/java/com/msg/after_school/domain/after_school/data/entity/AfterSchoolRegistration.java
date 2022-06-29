@@ -8,16 +8,14 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Builder
-@AllArgsConstructor @NoArgsConstructor //TODO AfterSchoolRegistration으로 Rename하기
-public class ClassRegistration {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@AllArgsConstructor @NoArgsConstructor
+@Table(name = "classRegistration")
+public class AfterSchoolRegistration {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "afterschoolId")
     private AfterSchool afterSchool;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userEmail")
     private User user;

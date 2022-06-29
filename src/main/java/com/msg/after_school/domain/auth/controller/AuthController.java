@@ -7,7 +7,6 @@ import com.msg.after_school.domain.auth.service.RedirectService;
 import com.msg.after_school.domain.auth.service.RefreshService;
 import com.msg.after_school.domain.auth.utils.CookieUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;

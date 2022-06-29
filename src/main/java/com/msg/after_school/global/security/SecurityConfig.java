@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsUtils;
 
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -28,9 +29,8 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .formLogin().disable()
-                .cors()
+                .cors().disable()
 
-                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/afterschool/*").authenticated()
                 .antMatchers(HttpMethod.GET, "/auth/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/auth/redirect").permitAll()
-                .antMatchers(HttpMethod.PATCH, "/auth/refresh").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/auth/refresh").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/auth").authenticated()
                 .antMatchers(HttpMethod.GET, "/auth/chk").authenticated()
 

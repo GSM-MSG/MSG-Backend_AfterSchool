@@ -7,9 +7,7 @@ import javax.persistence.Id;
 
 @Getter
 @Entity
-public class Teacher{
-    @Id
-    private String userId;
-
+public class Teacher {
+    @Id private String userId;
     private String password;
 }

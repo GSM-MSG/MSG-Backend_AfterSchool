@@ -1,6 +1,6 @@
 package com.msg.after_school.domain.after_school.controller;
 
-import com.msg.after_school.domain.after_school.data.dto.CancleApplyAfterSchoolDto;
+import com.msg.after_school.domain.after_school.data.dto.CancelApplyAfterSchoolDto;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
@@ -19,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class AfterSchoolController {
-
     private final AfterSchoolService afterSchoolService;
     private final AfterSchoolConverter afterSchoolConverter;
 
@@ -33,19 +32,19 @@ public class AfterSchoolController {
         return new ResponseEntity<>(responseList, HttpStatus.OK);
     }
     @PostMapping("/apply") //방과후산청을 등록한다.
-    public ResponseEntity applyAfterSchool(@RequestBody ApplyAfterSchoolDto applyAfterSchoolDto) {
+    public ResponseEntity<Void> applyAfterSchool(@RequestBody ApplyAfterSchoolDto applyAfterSchoolDto) {
         afterSchoolService.applyAfterSchool(applyAfterSchoolDto.getAfterSchoolId());
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @PostMapping("/cancel") //방과후신청을 취소한다.
-    public ResponseEntity cancelAfterSchool(@RequestBody CancleApplyAfterSchoolDto cancleApplyAfterSchoolDto) {
+    public ResponseEntity<Void> cancelAfterSchool(@RequestBody CancelApplyAfterSchoolDto cancelApplyAfterSchoolDto) {
         //유저 이메일로 유저 찾기
         //유저 정보 클럽데이터로 수강테이블에있는 데이터 삭제
-        afterSchoolService.cancelApplyAfterSchool(cancleApplyAfterSchoolDto.getAfterSchoolId());
+        afterSchoolService.cancelApplyAfterSchool(cancelApplyAfterSchoolDto.getAfterSchoolId());
         return ResponseEntity.ok().build();
     }
     @GetMapping("/check") //오늘이 방과후 기간인지 확인한다.
-    public ResponseEntity checkAfterSchoolDate() {
+    public ResponseEntity<Void> checkAfterSchoolDate() {
         return ResponseEntity.ok().build();
     }
 }
