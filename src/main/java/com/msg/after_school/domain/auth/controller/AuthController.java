@@ -6,6 +6,7 @@ import com.msg.after_school.domain.auth.service.LogoutService;
 import com.msg.after_school.domain.auth.service.RedirectService;
 import com.msg.after_school.domain.auth.service.RefreshService;
 import com.msg.after_school.domain.auth.utils.CookieUtil;
+import com.msg.after_school.global.security.exception.InvalidTokenException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -54,8 +56,13 @@ public class AuthController {
     }
 
     @PatchMapping("/refresh")
-    public void refresh(HttpServletResponse res) {
-        TokenDto token = refreshService.execute();
+    public void refresh(HttpServletRequest req, HttpServletResponse res){
+        Cookie refresh = cookieUtil.getCookie(req, "refreshToken");
+        if (refresh == null) {
+            throw InvalidTokenException.EXCEPTION;
+        }
+
+        TokenDto token = refreshService.execute(refresh.getValue());
         Cookie accessCookie = cookieUtil.createCookie("accessToken", token.getAccessToken(), token.getAccessExp());
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
         res.addCookie(accessCookie);
