@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Builder
 @AllArgsConstructor @NoArgsConstructor
+@Table(name = "class_registration")
 public class AfterSchoolRegistration {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

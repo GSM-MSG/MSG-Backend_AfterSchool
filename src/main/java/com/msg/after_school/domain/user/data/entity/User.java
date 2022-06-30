@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @ToString
-//@Table(name = "users") // 나중에 본 DB 연결 할때 지워야됨
+@Table(name = "user") // 나중에 본 DB 연결 할때 지워야됨
 public class User {
     @Id
     private String email;
