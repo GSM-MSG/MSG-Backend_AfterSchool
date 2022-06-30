@@ -43,7 +43,7 @@ public class JwtTokenProvider {
 
     private String generateToken(String id, String type, String secret, Integer exp) {
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS256, secret)
+                .signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encodeToString(jwtProperties.getAccessSecret().getBytes()))
                 .claim("email", id)
                 .claim("type", type)
                 .setIssuedAt(new Date())
