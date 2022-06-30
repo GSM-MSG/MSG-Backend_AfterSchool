@@ -17,7 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-@Table(name = "afterSchool")
 public class AfterSchool {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
