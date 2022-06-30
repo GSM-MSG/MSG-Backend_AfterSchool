@@ -1,9 +1,9 @@
-package com.msg.after_school.domain.after_school.util.impl;
+package com.msg.after_school.domain.after_school.service.util.impl;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
 import com.msg.after_school.domain.after_school.data.entity.Grade;
 import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
-import com.msg.after_school.domain.after_school.util.AfterSchoolConverter;
+import com.msg.after_school.domain.after_school.service.util.AfterSchoolConverter;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;

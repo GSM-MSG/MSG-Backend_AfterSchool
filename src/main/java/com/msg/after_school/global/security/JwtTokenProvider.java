@@ -22,11 +22,11 @@ public class JwtTokenProvider {
     private final AuthDetailsService authDetailsService;
 
     public String generateAccessToken(String id) {
-        return generateToken(id, "access", jwtProperties.getAccessSecret(), Long.parseLong(String.valueOf(60 * 15)));
+        return generateToken(id, "access", jwtProperties.getAccessSecret(), 60 * 15);
     }
 
     public String generateRefreshToken(String id) {
-        return generateToken(id, "refresh", jwtProperties.getRefreshSecret(), Long.parseLong(String.valueOf(60 * 60 * 24 * 7)));
+        return generateToken(id, "refresh", jwtProperties.getRefreshSecret(), 60 * 60 * 24 * 7);
     }
 
     public String resolveToken(HttpServletRequest request) {
@@ -41,12 +41,13 @@ public class JwtTokenProvider {
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-    private String generateToken(String id, String type, String secret, Long exp) {
+    private String generateToken(String id, String type, String secret, Integer exp) {
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .claim("email", id)
                 .claim("type", type)
                 .setIssuedAt(new Date())
+                .setSubject(id)
                 .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
                 .compact();
     }

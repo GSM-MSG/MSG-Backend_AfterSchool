@@ -4,7 +4,7 @@ import com.msg.after_school.domain.after_school.data.dto.CancelApplyAfterSchoolD
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
-import com.msg.after_school.domain.after_school.util.AfterSchoolConverter;
+import com.msg.after_school.domain.after_school.service.util.AfterSchoolConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

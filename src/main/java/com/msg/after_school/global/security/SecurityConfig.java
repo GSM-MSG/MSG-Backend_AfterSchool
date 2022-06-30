@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.PATCH, "/auth").authenticated()
                 .antMatchers(HttpMethod.GET, "/auth/chk").authenticated()
 
-                .anyRequest().permitAll()
+                .anyRequest().denyAll()
                 .and()
 
                 .addFilterAfter(new JwtTokenFilter(jwtTokenProvider, cookieUtil), UsernamePasswordAuthenticationFilter.class)

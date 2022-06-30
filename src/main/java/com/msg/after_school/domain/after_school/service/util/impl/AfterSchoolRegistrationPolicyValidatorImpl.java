@@ -1,4 +1,4 @@
-package com.msg.after_school.domain.after_school.util.impl;
+package com.msg.after_school.domain.after_school.service.util.impl;
 
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
@@ -6,7 +6,7 @@ import com.msg.after_school.domain.after_school.exception.AlreadyExistException;
 import com.msg.after_school.domain.after_school.exception.AlreadyJoinedAnotherAfterSchoolException;
 import com.msg.after_school.domain.after_school.exception.RegistrationNotFound;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
-import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
+import com.msg.after_school.domain.after_school.service.util.AfterSchoolRegistrationPolicyValidator;
 import com.msg.after_school.domain.user.data.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

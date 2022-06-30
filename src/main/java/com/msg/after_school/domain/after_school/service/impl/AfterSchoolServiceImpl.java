@@ -6,7 +6,7 @@ import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
-import com.msg.after_school.domain.after_school.util.AfterSchoolRegistrationPolicyValidator;
+import com.msg.after_school.domain.after_school.service.util.AfterSchoolRegistrationPolicyValidator;
 import com.msg.after_school.domain.user.data.entity.User;
 import com.msg.after_school.global.user.dao.UserDao;
 import lombok.RequiredArgsConstructor;

@@ -16,6 +16,7 @@ import com.msg.after_school.global.security.JwtTokenProvider;
 import com.msg.after_school.global.security.utils.ConfigUtils;
 import com.msg.after_school.global.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +31,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RedirectServiceImpl implements RedirectService {
     private final ConfigUtils configUtils;
     private final JwtTokenProvider jwtTokenProvider;
@@ -66,6 +68,9 @@ public class RedirectServiceImpl implements RedirectService {
 
             if(resultJson != null) {
                 GoogleLoginDto userInfoDto = objectMapper.readValue(resultJson, new TypeReference<GoogleLoginDto>() {});
+                if (!userInfoDto.getEmail().contains("@gsm.hs.kr")) {
+                    return null;
+                }
                 JSONObject gsmUser = gsmProvider.findGSMUser(userInfoDto.getEmail());
                 if (gsmUser == null){
                     return null;
@@ -80,12 +85,13 @@ public class RedirectServiceImpl implements RedirectService {
                     User user = findUser.orElseThrow(UserNotFoundException::new);
                     user.updateRefreshToken(refresh);
                 } else {
+
                     User user = User.builder()
                             .email(userInfoDto.getEmail())
-                            .class_((Integer) gsmUser.get("class"))
-                            .grade((Integer) gsmUser.get("grade"))
-                            .name((String) gsmUser.get("name"))
-                            .num((Integer) gsmUser.get("num"))
+                            .class_(Integer.parseInt(String.valueOf(gsmUser.get("class"))))
+                            .grade(Integer.parseInt(String.valueOf(gsmUser.get("grade"))))
+                            .name(String.valueOf(gsmUser.get("class")))
+                            .num(Integer.parseInt(String.valueOf(gsmUser.get("num"))))
                             .userImg(userInfoDto.getPicture())
                             .refreshToken(refresh)
                             .build();

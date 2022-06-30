@@ -7,6 +7,7 @@ import com.msg.after_school.domain.auth.service.RedirectService;
 import com.msg.after_school.domain.auth.service.RefreshService;
 import com.msg.after_school.domain.auth.utils.CookieUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@Slf4j
 public class AuthController {
     private final CookieUtil cookieUtil;
     private final LoginService loginService;
@@ -35,18 +38,19 @@ public class AuthController {
     }
 
     @GetMapping("/redirect")
-    public String redirectUrl(@RequestParam(value = "code") String code, HttpServletResponse response) {
+    public void redirectUrl(@RequestParam(value = "code") String code, HttpServletResponse response) throws IOException {
         TokenDto token = redirectService.execute(code);
 
         if (token == null) {
-            return "redirect://"+ frontUrl +"/login";
+            response.sendRedirect(frontUrl);
+            return;
         }
         Cookie accessCookie = cookieUtil.createCookie("accessToken", token.getAccessToken(), token.getAccessExp());
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
 
-        return "redirect://" + frontUrl;
+        response.sendRedirect(frontUrl);
     }
 
     @PatchMapping("/refresh")

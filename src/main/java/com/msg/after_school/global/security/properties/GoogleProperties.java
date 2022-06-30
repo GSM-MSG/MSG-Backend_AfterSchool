@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 @Getter
 @ConstructorBinding
 @AllArgsConstructor
-@ConfigurationProperties(prefix = "google")
+@ConfigurationProperties(prefix = "googles")
 public class GoogleProperties {
     private final String authUrl;
     private final String loginUrl;
