@@ -90,7 +90,7 @@ public class RedirectServiceImpl implements RedirectService {
                             .email(userInfoDto.getEmail())
                             .class_(Integer.parseInt(String.valueOf(gsmUser.get("class"))))
                             .grade(Integer.parseInt(String.valueOf(gsmUser.get("grade"))))
-                            .name(String.valueOf(gsmUser.get("class")))
+                            .name(String.valueOf(gsmUser.get("name")))
                             .num(Integer.parseInt(String.valueOf(gsmUser.get("num"))))
                             .userImg(userInfoDto.getPicture())
                             .refreshToken(refresh)
