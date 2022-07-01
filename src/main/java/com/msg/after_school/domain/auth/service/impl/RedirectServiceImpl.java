@@ -22,6 +22,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -37,6 +38,7 @@ public class RedirectServiceImpl implements RedirectService {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
     private final GSMProvider gsmProvider;
+    private final PasswordEncoder passwordEncoder;
 
     public TokenDto execute(String code) {
         RestTemplate restTemplate = new RestTemplate();
@@ -83,7 +85,7 @@ public class RedirectServiceImpl implements RedirectService {
 
                 if (findUser.isPresent()) {
                     User user = findUser.orElseThrow(UserNotFoundException::new);
-                    user.updateRefreshToken(refresh);
+                    user.updateRefreshToken(passwordEncoder.encode(refresh));
                 } else {
 
                     User user = User.builder()
@@ -93,7 +95,7 @@ public class RedirectServiceImpl implements RedirectService {
                             .name(String.valueOf(gsmUser.get("name")))
                             .num(Integer.parseInt(String.valueOf(gsmUser.get("num"))))
                             .userImg(userInfoDto.getPicture())
-                            .refreshToken(refresh)
+                            .refreshToken(passwordEncoder.encode(refresh))
                             .build();
                     userRepository.save(user);
                 }
