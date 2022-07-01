@@ -34,6 +34,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry
                 .addMapping("/**")
+                .allowedOrigins("http://localhost:8080")
                 .allowedOrigins(frontUrl)
                 .allowedMethods("GET", "POST", "PUT", "PATCH" , "DELETE", "OPTIONS");
     }
@@ -52,6 +53,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
+                .antMatchers(HttpMethod.GET, "/afterschool").authenticated()
                 .antMatchers(HttpMethod.GET, "/afterschool/*").authenticated()
                 .antMatchers(HttpMethod.POST, "/afterschool/*").authenticated()
                 .antMatchers(HttpMethod.GET, "/auth/login").permitAll()
@@ -61,6 +63,9 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .antMatchers(HttpMethod.GET, "/auth/chk").authenticated()
 
                 .anyRequest().denyAll()
+                .and()
+
+                .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
                 .and()
 
                 .addFilterAfter(new JwtTokenFilter(jwtTokenProvider, cookieUtil), UsernamePasswordAuthenticationFilter.class)
