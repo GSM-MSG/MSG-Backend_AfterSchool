@@ -29,6 +29,10 @@ public class JwtTokenProvider {
         return generateToken(id, "refresh", jwtProperties.getRefreshSecret(), 60 * 60 * 24 * 7);
     }
 
+    public String exactEmailFromToken(String token) {
+        return getTokenSubject(token);
+    }
+
     public String resolveToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         if (token != null && token.startsWith("Bearer "))
