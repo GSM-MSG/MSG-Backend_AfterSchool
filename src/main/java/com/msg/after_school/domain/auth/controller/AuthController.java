@@ -1,5 +1,6 @@
 package com.msg.after_school.domain.auth.controller;
 
+import com.msg.after_school.domain.auth.data.dto.RefreshTokenResponse;
 import com.msg.after_school.domain.auth.data.dto.TokenDto;
 import com.msg.after_school.domain.auth.service.LoginService;
 import com.msg.after_school.domain.auth.service.LogoutService;
@@ -56,7 +57,7 @@ public class AuthController {
     }
 
     @PatchMapping("/refresh")
-    public void refresh(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    public ResponseEntity<RefreshTokenResponse> refresh(HttpServletRequest req, HttpServletResponse res) throws IOException {
         Cookie refresh = cookieUtil.getCookie(req, "refreshToken");
         if (refresh == null) {
             throw InvalidTokenException.EXCEPTION;
@@ -65,10 +66,8 @@ public class AuthController {
         TokenDto token = refreshService.execute(refresh.getValue());
         Cookie accessCookie = cookieUtil.createCookie("accessToken", token.getAccessToken(), token.getAccessExp());
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
-        res.addCookie(accessCookie);
-        res.addCookie(refreshCookie);
-
-        res.sendRedirect(frontUrl);
+        RefreshTokenResponse refreshTokenResponse = new RefreshTokenResponse(accessCookie, refreshCookie);
+        return new ResponseEntity<>(refreshTokenResponse, HttpStatus.OK);
     }
 
     @PatchMapping("/")
