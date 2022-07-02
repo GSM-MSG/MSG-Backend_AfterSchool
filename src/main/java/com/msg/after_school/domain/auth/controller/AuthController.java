@@ -56,7 +56,7 @@ public class AuthController {
     }
 
     @PatchMapping("/refresh")
-    public void refresh(HttpServletRequest req, HttpServletResponse res){
+    public void refresh(HttpServletRequest req, HttpServletResponse res) throws IOException {
         Cookie refresh = cookieUtil.getCookie(req, "refreshToken");
         if (refresh == null) {
             throw InvalidTokenException.EXCEPTION;
@@ -67,6 +67,8 @@ public class AuthController {
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
         res.addCookie(accessCookie);
         res.addCookie(refreshCookie);
+
+        res.sendRedirect(frontUrl);
     }
 
     @PatchMapping("/")
