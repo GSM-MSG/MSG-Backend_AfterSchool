@@ -8,6 +8,7 @@ import com.msg.after_school.global.security.JwtTokenProvider;
 import com.msg.after_school.global.security.exception.InvalidTokenException;
 import com.msg.after_school.global.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,14 @@ import javax.transaction.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class RefreshServiceImpl implements RefreshService {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     public TokenDto execute(String refresh) {
+        log.info(refresh);
         String email = jwtTokenProvider.exactEmailFromToken(refresh);
         User user = userRepository.findUserByEmail(email).orElseThrow(UserNotFoundException::new);
         if (!passwordEncoder.matches(refresh, user.getRefreshToken())) {
