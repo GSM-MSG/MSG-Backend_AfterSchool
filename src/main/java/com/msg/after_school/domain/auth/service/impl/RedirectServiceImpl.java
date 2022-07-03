@@ -27,12 +27,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional
 public class RedirectServiceImpl implements RedirectService {
     private final ConfigUtils configUtils;
     private final JwtTokenProvider jwtTokenProvider;
