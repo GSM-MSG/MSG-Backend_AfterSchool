@@ -14,6 +14,8 @@ public interface AfterSchoolRegistrationRepository extends JpaRepository<AfterSc
     @Query("select distinct c from AfterSchoolRegistration c join fetch c.afterSchool")
     List<AfterSchoolRegistration> findAllJoinFetch();
 
+    List<AfterSchoolRegistration> findAllByUser(User user);
+
     Boolean existsByUserAndAfterSchool(User user, AfterSchool afterSchool);
     void deleteByUserAndAfterSchool(User user, AfterSchool afterSchool);
 }

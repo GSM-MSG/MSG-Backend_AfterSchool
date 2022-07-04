@@ -2,8 +2,11 @@ package com.msg.after_school.domain.after_school.service.impl;
 
 
 import com.msg.after_school.domain.after_school.dao.AfterSchoolDao;
+import com.msg.after_school.domain.after_school.data.dto.response.AfterSchoolListResponseDto;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
+import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
+import com.msg.after_school.domain.after_school.data.entity.Grade;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import com.msg.after_school.domain.after_school.service.util.AfterSchoolRegistrationPolicyValidator;
@@ -15,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -26,10 +31,27 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
     private final AfterSchoolDao afterSchoolDao;
 
     @Override
-    @Transactional (readOnly = true)
-    public List<AfterSchool> findAfterSchoolList() { // 1 학년 월 , 수
+    @Transactional(readOnly = true)
+    public List<AfterSchoolListResponseDto> findAfterSchoolList() {
         List<AfterSchool> afterSchoolList = afterSchoolDao.findAllByIsOpened(true);
-        return afterSchoolList;
+        User currentUser = userDao.getCurrentUser();
+        List<AfterSchool> appliedAfterSchoolList = afterSchoolRegistrationRepository.findAllByUser(currentUser).stream()
+                .map(AfterSchoolRegistration::getAfterSchool)
+                .collect(Collectors.toList());
+
+        List<AfterSchoolListResponseDto> afterSchoolListResponseDtoList = afterSchoolList.stream()
+                .map(as -> AfterSchoolListResponseDto.builder()
+                        .id(as.getId())
+                        .title(as.getTitle())
+                        .week(as.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).collect(Collectors.toList()))
+                        .grade(as.getGrade().stream().map(Grade::getGrade).collect(Collectors.toList()))
+                        .isOpened(as.getIsOpened())
+                        .isApplied(appliedAfterSchoolList.contains(as))
+                        .build()
+                )
+                .collect(Collectors.toList());
+
+        return afterSchoolListResponseDtoList;
     }
 
     @Override
