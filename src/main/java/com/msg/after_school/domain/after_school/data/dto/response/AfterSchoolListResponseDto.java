@@ -14,8 +14,8 @@ import java.util.List;
 public class AfterSchoolListResponseDto {
     private Integer id;
     private String title;
-    private List<Grade> grade;
-    private List<DayOfWeek> week;
+    private List<Integer> grade;
+    private List<String> week;
     private Boolean isOpened;
     private Boolean isApplied;
 }

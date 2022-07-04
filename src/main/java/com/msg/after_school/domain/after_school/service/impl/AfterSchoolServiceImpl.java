@@ -6,6 +6,7 @@ import com.msg.after_school.domain.after_school.data.dto.response.AfterSchoolLis
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
 import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
+import com.msg.after_school.domain.after_school.data.entity.Grade;
 import com.msg.after_school.domain.after_school.repository.AfterSchoolRegistrationRepository;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import com.msg.after_school.domain.after_school.service.util.AfterSchoolRegistrationPolicyValidator;
@@ -42,8 +43,8 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
                 .map(as -> AfterSchoolListResponseDto.builder()
                         .id(as.getId())
                         .title(as.getTitle())
-                        .week(as.getDayOfWeek())
-                        .grade(as.getGrade())
+                        .week(as.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).collect(Collectors.toList()))
+                        .grade(as.getGrade().stream().map(Grade::getGrade).collect(Collectors.toList()))
                         .isOpened(as.getIsOpened())
                         .isApplied(appliedAfterSchoolList.contains(as))
                         .build()
