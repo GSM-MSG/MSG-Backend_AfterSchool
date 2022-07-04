@@ -1,10 +1,9 @@
 package com.msg.after_school.domain.after_school.controller;
 
 import com.msg.after_school.domain.after_school.data.dto.CancelApplyAfterSchoolDto;
-import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
+import com.msg.after_school.domain.after_school.data.dto.response.AfterSchoolListResponseDto;
 import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
-import com.msg.after_school.domain.after_school.service.util.AfterSchoolConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,16 +19,14 @@ import java.util.List;
 @Slf4j
 public class AfterSchoolController {
     private final AfterSchoolService afterSchoolService;
-    private final AfterSchoolConverter afterSchoolConverter;
 
     @GetMapping//방과후 목록을 가져온다.
     @ResponseBody
-    public ResponseEntity<List<AfterSchoolResponse>> findAfterSchoolList() {
+    public ResponseEntity<List<AfterSchoolListResponseDto>> findAfterSchoolList() {
         //Request정보를 검색조건 Dto로 치환한다.
-        List<AfterSchool> dtoList = afterSchoolService.findAfterSchoolList();
+        List<AfterSchoolListResponseDto> dtoList = afterSchoolService.findAfterSchoolList();
         //받아온 목록을 응답값으로 치환한다.
-        List<AfterSchoolResponse> responseList = afterSchoolConverter.toResponse(dtoList);
-        return new ResponseEntity<>(responseList, HttpStatus.OK);
+        return new ResponseEntity(dtoList, HttpStatus.OK);
     }
     @PostMapping("/apply") //방과후산청을 등록한다.
     public ResponseEntity<Void> applyAfterSchool(@RequestBody ApplyAfterSchoolDto applyAfterSchoolDto) {
