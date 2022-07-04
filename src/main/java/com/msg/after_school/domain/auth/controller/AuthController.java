@@ -57,7 +57,7 @@ public class AuthController {
     }
 
     @PatchMapping("/refresh")
-    public ResponseEntity<RefreshTokenResponse> refresh(HttpServletRequest req) {
+    public ResponseEntity<RefreshTokenResponse> refresh(HttpServletRequest req, HttpServletResponse res) {
         Cookie refresh = cookieUtil.getCookie(req, "refreshToken");
         if (refresh == null) {
             throw InvalidTokenException.EXCEPTION;
@@ -66,6 +66,8 @@ public class AuthController {
         TokenDto token = refreshService.execute(refresh.getValue());
         Cookie accessCookie = cookieUtil.createCookie("accessToken", token.getAccessToken(), token.getAccessExp());
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
+        res.addCookie(accessCookie);
+        res.addCookie(refreshCookie);
         RefreshTokenResponse refreshTokenResponse = new RefreshTokenResponse(accessCookie, refreshCookie);
         return new ResponseEntity<>(refreshTokenResponse, HttpStatus.OK);
     }
