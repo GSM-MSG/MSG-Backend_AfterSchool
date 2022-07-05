@@ -55,19 +55,14 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
         Integer currentGrade = currentUser.getGrade();
 
-        List<String> allAppliedWeek = appliedAfterSchoolList.stream()
+        List<String> appliedWeek = Arrays.asList((String[]) appliedAfterSchoolList.stream()
                 .map(AfterSchool::getDayOfWeek)
                 .reduce((week1, week2) -> {
                     week1.addAll(week2);
                     return week1;
                 })
                 .orElse(List.of()).stream()
-                .map(DayOfWeek::getDayOfWeek)
-                .collect(Collectors.toList());
-
-        HashSet<String> setWeek = new HashSet<>(allAppliedWeek);
-
-        List<String> appliedWeek = Arrays.asList((String[]) setWeek.toArray());
+                .map(DayOfWeek::getDayOfWeek).distinct().toArray());
 
         return FindAfterSchoolListResponseDto.builder()
                 .list(afterSchoolListResponseDtoList)
