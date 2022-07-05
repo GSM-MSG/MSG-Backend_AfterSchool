@@ -14,5 +14,5 @@ import java.util.List;
 public class FindAfterSchoolListResponseDto {
     private List<AfterSchoolResponseDto> list;
     private Integer currentGrade;
-    private List<Integer> appliedGrades;
+    private List<String> appliedWeek;
 }

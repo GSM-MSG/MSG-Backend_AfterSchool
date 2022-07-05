@@ -55,24 +55,24 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
         Integer currentGrade = currentUser.getGrade();
 
-        List<Integer> allAppliedGrades = appliedAfterSchoolList.stream()
-                .map(AfterSchool::getGrade)
-                .reduce((grade1, grade2) -> {
-                    grade1.addAll(grade2);
-                    return grade1;
+        List<String> allAppliedWeek = appliedAfterSchoolList.stream()
+                .map(AfterSchool::getDayOfWeek)
+                .reduce((week1, week2) -> {
+                    week1.addAll(week2);
+                    return week1;
                 })
                 .orElse(List.of()).stream()
-                .map(Grade::getGrade)
+                .map(DayOfWeek::getDayOfWeek)
                 .collect(Collectors.toList());
 
-        HashSet<Integer> settedGrades = new HashSet<>(allAppliedGrades);
+        HashSet<String> setWeek = new HashSet<>(allAppliedWeek);
 
-        List<Integer> appliedGrades = Arrays.asList((Integer[]) settedGrades.toArray());
+        List<String> appliedWeek = Arrays.asList((String[]) setWeek.toArray());
 
         return FindAfterSchoolListResponseDto.builder()
                 .list(afterSchoolListResponseDtoList)
                 .currentGrade(currentGrade)
-                .appliedGrades(appliedGrades)
+                .appliedWeek(appliedWeek)
                 .build();
     }
 
