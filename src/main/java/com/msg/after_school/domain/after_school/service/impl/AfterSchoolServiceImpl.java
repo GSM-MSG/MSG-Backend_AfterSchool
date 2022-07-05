@@ -57,12 +57,14 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
         List<String> appliedWeek = Arrays.asList((String[]) appliedAfterSchoolList.stream()
                 .map(AfterSchool::getDayOfWeek)
-                .reduce((week1, week2) -> {
+                .reduce(List.of(),(week1, week2) -> {
                     week1.addAll(week2);
                     return week1;
-                })
-                .orElse(List.of()).stream()
-                .map(DayOfWeek::getDayOfWeek).distinct().toArray());
+                }).stream()
+                .map(DayOfWeek::getDayOfWeek)
+                .distinct()
+                .toArray()
+        );
 
         return FindAfterSchoolListResponseDto.builder()
                 .list(afterSchoolListResponseDtoList)
