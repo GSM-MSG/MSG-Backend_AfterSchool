@@ -65,7 +65,7 @@ public class JwtTokenProvider {
                     .getBody();
         } catch (ExpiredJwtException e) {
             throw ExpiredTokenException.EXCEPTION;
-        } catch (SignatureException e) {
+        } catch (SignatureException | MalformedJwtException e) {
             throw InvalidTokenException.EXCEPTION;
         }
     }
