@@ -70,7 +70,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
         List<Integer> appliedGrades = Arrays.asList((Integer[]) settedGrades.toArray());
 
         return FindAfterSchoolListResponseDto.builder()
-                .lists(afterSchoolListResponseDtoList)
+                .list(afterSchoolListResponseDtoList)
                 .currentGrade(currentGrade)
                 .appliedGrades(appliedGrades)
                 .build();

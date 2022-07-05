@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class FindAfterSchoolListResponseDto {
-    private List<AfterSchoolResponseDto> lists;
+    private List<AfterSchoolResponseDto> list;
     private Integer currentGrade;
     private List<Integer> appliedGrades;
 }
