@@ -2,7 +2,8 @@ package com.msg.after_school.domain.after_school.service.impl;
 
 
 import com.msg.after_school.domain.after_school.dao.AfterSchoolDao;
-import com.msg.after_school.domain.after_school.data.dto.response.AfterSchoolListResponseDto;
+import com.msg.after_school.domain.after_school.data.dto.response.AfterSchoolResponseDto;
+import com.msg.after_school.domain.after_school.data.dto.response.FindAfterSchoolListResponseDto;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
 import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
@@ -17,8 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -32,15 +34,15 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<AfterSchoolListResponseDto> findAfterSchoolList() {
+    public FindAfterSchoolListResponseDto findAfterSchoolList() {
         List<AfterSchool> afterSchoolList = afterSchoolDao.findAllByIsOpened(true);
         User currentUser = userDao.getCurrentUser();
         List<AfterSchool> appliedAfterSchoolList = afterSchoolRegistrationRepository.findAllByUser(currentUser).stream()
                 .map(AfterSchoolRegistration::getAfterSchool)
                 .collect(Collectors.toList());
 
-        List<AfterSchoolListResponseDto> afterSchoolListResponseDtoList = afterSchoolList.stream()
-                .map(as -> AfterSchoolListResponseDto.builder()
+        List<AfterSchoolResponseDto> afterSchoolListResponseDtoList = afterSchoolList.stream()
+                .map(as -> AfterSchoolResponseDto.builder()
                         .id(as.getId())
                         .title(as.getTitle())
                         .week(as.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).collect(Collectors.toList()))
@@ -51,7 +53,27 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
                 )
                 .collect(Collectors.toList());
 
-        return afterSchoolListResponseDtoList;
+        Integer currentGrade = currentUser.getGrade();
+
+        List<Integer> allAppliedGrades = appliedAfterSchoolList.stream()
+                .map(AfterSchool::getGrade)
+                .reduce((grade1, grade2) -> {
+                    grade1.addAll(grade2);
+                    return grade1;
+                })
+                .orElse(List.of()).stream()
+                .map(Grade::getGrade)
+                .collect(Collectors.toList());
+
+        HashSet<Integer> settedGrades = new HashSet<>(allAppliedGrades);
+
+        List<Integer> appliedGrades = Arrays.asList((Integer[]) settedGrades.toArray());
+
+        return FindAfterSchoolListResponseDto.builder()
+                .lists(afterSchoolListResponseDtoList)
+                .currentGrade(currentGrade)
+                .appliedGrades(appliedGrades)
+                .build();
     }
 
     @Override

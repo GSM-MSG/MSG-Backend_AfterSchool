@@ -1,8 +1,8 @@
 package com.msg.after_school.domain.after_school.controller;
 
 import com.msg.after_school.domain.after_school.data.dto.CancelApplyAfterSchoolDto;
-import com.msg.after_school.domain.after_school.data.dto.response.AfterSchoolListResponseDto;
-import com.msg.after_school.domain.after_school.data.response.AfterSchoolResponse;
+import com.msg.after_school.domain.after_school.data.dto.response.FindAfterSchoolListResponseDto;
+import com.msg.after_school.domain.after_school.data.dto.response.AfterSchoolResponseDto;
 import com.msg.after_school.domain.after_school.service.AfterSchoolService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +22,9 @@ public class AfterSchoolController {
 
     @GetMapping//방과후 목록을 가져온다.
     @ResponseBody
-    public ResponseEntity<List<AfterSchoolListResponseDto>> findAfterSchoolList() {
+    public ResponseEntity<FindAfterSchoolListResponseDto> findAfterSchoolList() {
         //Request정보를 검색조건 Dto로 치환한다.
-        List<AfterSchoolListResponseDto> dtoList = afterSchoolService.findAfterSchoolList();
+        List<AfterSchoolResponseDto> dtoList = afterSchoolService.findAfterSchoolList();
         //받아온 목록을 응답값으로 치환한다.
         return new ResponseEntity(dtoList, HttpStatus.OK);
     }
