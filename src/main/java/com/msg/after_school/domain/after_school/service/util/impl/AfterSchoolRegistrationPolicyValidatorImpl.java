@@ -59,7 +59,8 @@ public class AfterSchoolRegistrationPolicyValidatorImpl implements AfterSchoolRe
         return Objects.equals(afterSchoolRegistration.getUser().getEmail(), userInfo.getEmail());
     }
     private Boolean checkDayOfWeek(AfterSchoolRegistration afterSchoolRegistration, AfterSchool afterSchoolInfo) {
-        return afterSchoolRegistration.getAfterSchool().getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).noneMatch(dow -> afterSchoolInfo.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).anyMatch(it -> checkDayOfWeekString(dow, it)));
+        return afterSchoolRegistration.getAfterSchool().getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).noneMatch(
+                dow -> afterSchoolInfo.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).anyMatch(it -> checkDayOfWeekString(dow, it)));
     }
     private Boolean checkDayOfWeekString(String lhs, String rhs) {
         return Objects.equals(lhs, rhs);
