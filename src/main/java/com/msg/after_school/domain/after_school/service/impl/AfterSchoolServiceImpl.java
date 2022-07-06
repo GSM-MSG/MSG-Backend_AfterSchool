@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,7 +57,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
         List<String> appliedWeek = appliedAfterSchoolList.stream()
                 .map(AfterSchool::getDayOfWeek)
-                .reduce(List.of(), (week1, week2) -> {
+                .reduce(new ArrayList<>(), (week1, week2) -> {
                     week1.addAll(week2);
                     return week1;
                 }).stream()
