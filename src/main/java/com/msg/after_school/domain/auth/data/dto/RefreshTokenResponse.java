@@ -8,6 +8,6 @@ import javax.servlet.http.Cookie;
 @Getter
 @AllArgsConstructor
 public class RefreshTokenResponse {
-    Cookie accessToken;
-    Cookie refreshToken;
+    String accessToken;
+    String refreshToken;
 }

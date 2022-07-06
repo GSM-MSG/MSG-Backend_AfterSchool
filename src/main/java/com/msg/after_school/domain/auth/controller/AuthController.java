@@ -68,7 +68,7 @@ public class AuthController {
         Cookie refreshCookie = cookieUtil.createCookie("refreshToken", token.getRefreshToken(), token.getRefreshExp());
         res.addCookie(accessCookie);
         res.addCookie(refreshCookie);
-        RefreshTokenResponse refreshTokenResponse = new RefreshTokenResponse(accessCookie, refreshCookie);
+        RefreshTokenResponse refreshTokenResponse = new RefreshTokenResponse(accessCookie.getValue(), refreshCookie.getValue());
         return new ResponseEntity<>(refreshTokenResponse, HttpStatus.OK);
     }
 
