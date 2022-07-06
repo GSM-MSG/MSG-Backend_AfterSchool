@@ -2,6 +2,7 @@ package com.msg.after_school.domain.after_school.service.util.impl;
 
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
+import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
 import com.msg.after_school.domain.after_school.exception.AlreadyExistException;
 import com.msg.after_school.domain.after_school.exception.AlreadyJoinedAnotherAfterSchoolException;
 import com.msg.after_school.domain.after_school.exception.RegistrationNotFound;
@@ -58,6 +59,9 @@ public class AfterSchoolRegistrationPolicyValidatorImpl implements AfterSchoolRe
         return Objects.equals(afterSchoolRegistration.getUser().getEmail(), userInfo.getEmail());
     }
     private Boolean checkDayOfWeek(AfterSchoolRegistration afterSchoolRegistration, AfterSchool afterSchoolInfo) {
-        return afterSchoolRegistration.getAfterSchool().getDayOfWeek().stream().noneMatch(dow -> afterSchoolInfo.getDayOfWeek().contains(dow));
+        return afterSchoolRegistration.getAfterSchool().getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).noneMatch(dow -> afterSchoolInfo.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).anyMatch(it -> checkDayOfWeekString(dow, it)));
+    }
+    private Boolean checkDayOfWeekString(String lhs, String rhs) {
+        return Objects.equals(lhs, rhs);
     }
 }
