@@ -18,8 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,8 +43,9 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
                 .map(as -> AfterSchoolResponseDto.builder()
                         .id(as.getId())
                         .title(as.getTitle())
-                        .week(as.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).collect(Collectors.toList()))
+                        .dayOfWeek(as.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).collect(Collectors.toList()))
                         .grade(as.getGrade().stream().map(Grade::getGrade).collect(Collectors.toList()))
+                        .season(as.getSeason())
                         .isOpened(as.getIsOpened())
                         .isApplied(appliedAfterSchoolList.contains(as))
                         .build()
