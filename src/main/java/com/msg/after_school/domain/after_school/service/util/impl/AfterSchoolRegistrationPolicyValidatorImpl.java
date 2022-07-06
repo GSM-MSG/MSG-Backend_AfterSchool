@@ -3,6 +3,7 @@ package com.msg.after_school.domain.after_school.service.util.impl;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchool;
 import com.msg.after_school.domain.after_school.data.entity.AfterSchoolRegistration;
 import com.msg.after_school.domain.after_school.data.entity.DayOfWeek;
+import com.msg.after_school.domain.after_school.exception.AfterSchoolIsNotOpenedException;
 import com.msg.after_school.domain.after_school.exception.AlreadyExistException;
 import com.msg.after_school.domain.after_school.exception.AlreadyJoinedAnotherAfterSchoolException;
 import com.msg.after_school.domain.after_school.exception.RegistrationNotFound;
@@ -23,6 +24,7 @@ public class AfterSchoolRegistrationPolicyValidatorImpl implements AfterSchoolRe
     public void validate(AfterSchool afterSchoolInfo, User userInfo) {
         checkAlreadyRegistered (afterSchoolInfo, userInfo);
         checkRegisteredAnotherAfterSchool(afterSchoolInfo, userInfo);
+        checkAfterSchoolIsOpened(afterSchoolInfo);
     }
 
     @Override
@@ -53,6 +55,12 @@ public class AfterSchoolRegistrationPolicyValidatorImpl implements AfterSchoolRe
                 checkDayOfWeek(afterSchoolRegistration, afterSchoolInfo) && checkUser(afterSchoolRegistration, userInfo));
 
         if(!checkRegisteredAnotherAfterSchool) throw new AlreadyJoinedAnotherAfterSchoolException();
+    }
+
+    // 신청이 열려있는 방과후에 신청했는지 검사한다.
+    private void checkAfterSchoolIsOpened(AfterSchool afterSchool) {
+        if (!afterSchool.getIsOpened())
+            throw new AfterSchoolIsNotOpenedException();
     }
 
     private Boolean checkUser(AfterSchoolRegistration afterSchoolRegistration, User userInfo) {

@@ -11,6 +11,7 @@ public enum ErrorCode {
     BAD_REQUEST_ALREADY_EXIST (400,"Already exist"),
     BAD_REQUEST_ALREADY_JOINED_ANOTHER_AFTERSCHOOL (400,"Already joined another afterSchool"),
     USER_NOT_FOUND_REGISTRATION(400,"Not Found Register User"),
+    AFTERSCHOOL_IS_NOT_OPENED(400, "This afterSchool is not opened"),
 
     EXPIRED_TOKEN(401, "Expired Token"),
     INVALID_TOKEN(401, "Invalid Token"),
