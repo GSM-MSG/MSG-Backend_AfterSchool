@@ -40,7 +40,8 @@ public class SecurityConfig implements WebMvcConfigurer {
         registry
                 .addMapping("/**")
                 .allowedOrigins("http://localhost:8080", frontUrl)
-                .allowedMethods("GET", "POST", "PUT", "PATCH" , "DELETE", "OPTIONS");
+                .allowedMethods("GET", "POST", "PUT", "PATCH" , "DELETE", "OPTIONS")
+                .allowCredentials(true);
     }
 
     @Bean
