@@ -22,7 +22,7 @@ public class RefreshServiceImpl implements RefreshService {
     private final PasswordEncoder passwordEncoder;
 
     public TokenDto execute(String refresh) {
-        String email = jwtTokenProvider.exactEmailFromToken(refresh);
+        String email = jwtTokenProvider.exactEmailFromRefreshToken(refresh);
         User user = userRepository.findUserByEmail(email).orElseThrow(UserNotFoundException::new);
         if (!passwordEncoder.matches(refresh, user.getRefreshToken())) {
             throw InvalidTokenException.EXCEPTION;

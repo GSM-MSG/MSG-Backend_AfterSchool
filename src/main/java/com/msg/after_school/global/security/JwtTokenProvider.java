@@ -29,8 +29,8 @@ public class JwtTokenProvider {
         return generateToken(id, "refresh", jwtProperties.getRefreshSecret(), 60 * 60 * 24 * 7);
     }
 
-    public String exactEmailFromToken(String token) {
-        return getTokenSubject(token);
+    public String exactEmailFromRefreshToken(String token) {
+        return getTokenSubject(token, jwtProperties.getRefreshSecret());
     }
 
     public String resolveToken(HttpServletRequest request) {
@@ -41,13 +41,13 @@ public class JwtTokenProvider {
     }
 
     public Authentication authentication(String token) {
-        UserDetails userDetails = authDetailsService.loadUserByUsername(getTokenSubject(token));
+        UserDetails userDetails = authDetailsService.loadUserByUsername(getTokenSubject(token, jwtProperties.getAccessSecret()));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
     private String generateToken(String id, String type, String secret, Integer exp) {
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encodeToString(jwtProperties.getAccessSecret().getBytes()))
+                .signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encodeToString(secret.getBytes()))
                 .claim("email", id)
                 .claim("type", type)
                 .setIssuedAt(new Date())
@@ -56,11 +56,11 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    private Claims getTokenBody(String token) {
+    private Claims getTokenBody(String token, String secret) {
 
         try {
             return Jwts.parser()
-                    .setSigningKey(Base64.getEncoder().encodeToString(jwtProperties.getAccessSecret().getBytes()))
+                    .setSigningKey(Base64.getEncoder().encodeToString(secret.getBytes()))
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
@@ -70,7 +70,7 @@ public class JwtTokenProvider {
         }
     }
 
-    private String getTokenSubject(String token) {
-        return getTokenBody(token).get("email", String.class);
+    private String getTokenSubject(String token, String secret) {
+        return getTokenBody(token, secret).get("email", String.class);
     }
 }
