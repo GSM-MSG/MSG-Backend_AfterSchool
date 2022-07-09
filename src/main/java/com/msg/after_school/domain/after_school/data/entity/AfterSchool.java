@@ -22,9 +22,9 @@ public class AfterSchool {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
-    @OneToMany(mappedBy = "afterSchool")
+    @OneToMany(mappedBy = "afterSchool", cascade = CascadeType.REMOVE)
     private List<Grade> grade;
-    @OneToMany(mappedBy = "afterSchool")
+    @OneToMany(mappedBy = "afterSchool", cascade = CascadeType.REMOVE)
     private List<DayOfWeek> dayOfWeek;
     private String teacher;
     @Enumerated(EnumType.STRING)
