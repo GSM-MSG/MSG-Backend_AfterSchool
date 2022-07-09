@@ -19,8 +19,9 @@ public class User {
     @Column(name = "class")
     private Integer class_;
     private Integer num;
+    @Column(name = "userImg")
     private String userImg;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "refreshToken")
     private String refreshToken;
     public void updateRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;

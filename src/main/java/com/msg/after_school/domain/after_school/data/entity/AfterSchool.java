@@ -29,7 +29,8 @@ public class AfterSchool {
     private String teacher;
     @Enumerated(EnumType.STRING)
     private SeasonType season;
+    @Column(name = "yearOf")
     private Integer yearOf;
-    @Column(columnDefinition = "TINYINT")
+    @Column(columnDefinition = "TINYINT", name = "isOpened")
     private Boolean isOpened;
 }
