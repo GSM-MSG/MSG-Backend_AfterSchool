@@ -14,7 +14,7 @@ public class AfterSchoolRegistration {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "afterschoolId")
+    @JoinColumn(name = "afterSchoolId")
     private AfterSchool afterSchool;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userEmail")
