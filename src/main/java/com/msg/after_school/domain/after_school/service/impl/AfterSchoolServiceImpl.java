@@ -15,9 +15,11 @@ import com.msg.after_school.domain.user.data.entity.User;
 import com.msg.after_school.global.user.dao.UserDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.LockModeType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +35,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     @Override
     @Transactional(readOnly = true)
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     public FindAfterSchoolListResponseDto findAfterSchoolList() {
         List<AfterSchool> afterSchoolList = afterSchoolDao.findAllByIsOpened(true);
         User currentUser = userDao.getCurrentUser();
