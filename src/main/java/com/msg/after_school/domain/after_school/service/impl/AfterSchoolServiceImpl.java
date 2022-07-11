@@ -50,6 +50,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
                         .dayOfWeek(as.getDayOfWeek().stream().map(DayOfWeek::getDayOfWeek).collect(Collectors.toList()))
                         .grade(as.getGrade().stream().map(Grade::getGrade).collect(Collectors.toList()))
                         .season(as.getSeason())
+                        .teacher(as.getTeacher())
                         .isOpened(as.getIsOpened())
                         .isApplied(appliedAfterSchoolList.contains(as))
                         .build()
@@ -77,6 +78,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     @Override
     @Transactional
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     public void applyAfterSchool(Integer AfterSchoolId) {
         //인자로 받은 방과후Id로 방과후정보를 가져온다.
         AfterSchool afterSchoolInfo = afterSchoolDao.getAfterSchoolByAfterSchoolId(AfterSchoolId);
@@ -93,6 +95,7 @@ public class AfterSchoolServiceImpl implements AfterSchoolService {
 
     @Override
     @Transactional
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     public void cancelApplyAfterSchool(Integer AfterSchoolId) {
         //인자로 받은 방과후Id로 방과후정보를 가져온다.
         AfterSchool afterSchoolInfo = afterSchoolDao.getAfterSchoolByAfterSchoolId(AfterSchoolId);

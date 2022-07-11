@@ -19,5 +19,6 @@ public class AfterSchoolResponseDto {
     private List<String> dayOfWeek;
     private SeasonType season;
     private Boolean isOpened;
+    private String teacher;
     private Boolean isApplied;
 }
